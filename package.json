@@ -24,5 +24,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/assembler-school/node-develop-your-mvc-project.git"
+  },
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  },
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start",
+    "start": "concurrently --kill-others-on-fail \backend  \frontend"
   }
 }
