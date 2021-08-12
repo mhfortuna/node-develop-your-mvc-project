@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 const validator = require("validator");
-// const db = require("./index");
 
 const userSchema = new Schema(
   {
