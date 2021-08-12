@@ -1,5 +1,13 @@
 const app = require("./server");
+const { config } = require("./config/config");
+const connect = require("./db/connect");
 
-app.listen(4000, () => {
-  console.log(`Server listening on http:localhost:4000`);
-});
+connect()
+  .then(async () => {
+    app.listen(config.app.port, () => {
+      console.log(`Server running at port ${config.app.port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });

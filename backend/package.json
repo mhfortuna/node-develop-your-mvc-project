@@ -12,7 +12,7 @@
     "lint:js:fix": "yarn run lint:js -- --fix",
     "lint:format": "prettier --write .",
     "lint:format:check": "prettier --check .",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install backend/.husky",
     "precommit": "lint-staged",
     "prepush": "npm run lint:js && npm run lint:format:check && npm run test"
   },
@@ -38,6 +38,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
     "morgan": "^1.10.0"

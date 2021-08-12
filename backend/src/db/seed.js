@@ -11,6 +11,7 @@ async function seedProducts() {
 
 async function seedEmployees() {
   //TODO:
+
   await db.Employee.deleteMany({});
   await db.Employee.create([...results]);
 }
