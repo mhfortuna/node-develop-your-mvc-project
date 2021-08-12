@@ -22,11 +22,13 @@ const productSchema = new Schema(
     },
     price: {
       type: Number,
+      default: 0,
       required: [true, "Price is required"],
     },
     unitsInStock: {
       //TODO: Validate int?
       type: Number,
+      default: 0,
       required: [true, "Stock units is required"],
     },
     lens: { type: [String] },
