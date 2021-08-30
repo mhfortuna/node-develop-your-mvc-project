@@ -2,8 +2,8 @@ const db = require("../models");
 
 // GET product
 async function getById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const foundProduct = await db.Product.findById(id).lean();
     res.status(200).send({ foundProduct: foundProduct });
   } catch (error) {
@@ -13,8 +13,8 @@ async function getById(req, res, next) {
 
 // PATCH product
 async function updateById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const updatedProduct = await db.Product.findByIdAndUpdate(id, req.body, {
       new: true,
     });
@@ -29,8 +29,8 @@ async function updateById(req, res, next) {
 
 // DELETE product
 async function deleteById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const deletedProduct = await db.Product.findByIdAndDelete(id);
     res.status(200).send({ message: "Successfully deleted", id: id });
   } catch (error) {
@@ -50,8 +50,8 @@ async function getAll(req, res, next) {
 
 // POST product
 async function add(req, res, next) {
-  const { title, images, description, price, unitsInStock, lens } = req.body;
   try {
+    const { title, images, description, price, unitsInStock, lens } = req.body;
     const addedProduct = await db.Product.create({
       title: title,
       images: images,

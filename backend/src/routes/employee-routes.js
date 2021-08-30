@@ -4,6 +4,9 @@ const Router = require("express").Router;
 // Declaring router
 const employeeRouter = Router();
 
+// Sign in
+employeeRouter.post("/signin/", employeeController.signIn);
+
 // GET employee
 employeeRouter.get("/:id", employeeController.getById);
 // PATCH employee

@@ -1,9 +1,20 @@
 const db = require("../models");
+const { encryptPassword } = require("../utils/password-hash");
+
+// Sign in
+async function signIn(req, res, next) {
+  try {
+    const { email, password } = req.body;
+    res.status(200).send({ message: "Successfully signed in" });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+}
 
 // GET employee
 async function getById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const foundEmployee = await db.Employee.findById(id).lean();
     res.status(200).send({ foundEmployee: foundEmployee });
   } catch (error) {
@@ -13,8 +24,8 @@ async function getById(req, res, next) {
 
 // PATCH employee
 async function updateById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const updatedEmployee = await db.Employee.findByIdAndUpdate(id, req.body, {
       new: true,
     });
@@ -29,8 +40,8 @@ async function updateById(req, res, next) {
 
 // DELETE employee
 async function deleteById(req, res, next) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const deletedEmployee = await db.Employee.findByIdAndDelete(id);
     res.status(200).send({ message: "Successfully deleted", id: id });
   } catch (error) {
@@ -50,14 +61,15 @@ async function getAll(req, res, next) {
 
 // POST employee
 async function add(req, res, next) {
-  const { fullName, email, password, isAdmin, profileImage } = req.body;
   try {
+    const { fullName, email, password, isAdmin, profileImage } = req.body;
+    const encryptedPassword = await encryptPassword(password);
     const addedEmployee = await db.Employee.create({
       fullName: fullName,
       email: email,
-      password: password,
+      password: encryptedPassword,
       isAdmin: isAdmin,
-      profileImage,
+      profileImage: profileImage,
     });
     res
       .status(200)
@@ -68,6 +80,7 @@ async function add(req, res, next) {
 }
 
 module.exports = {
+  signIn: signIn,
   getById: getById,
   updateById: updateById,
   deleteById: deleteById,

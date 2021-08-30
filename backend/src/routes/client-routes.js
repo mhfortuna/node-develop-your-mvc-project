@@ -4,6 +4,9 @@ const Router = require("express").Router;
 // Declaring router
 const clientRouter = Router();
 
+// Sign in
+clientRouter.post("/signin/", clientController.signIn);
+
 // GET client
 clientRouter.get("/:id", clientController.getById);
 // PATCH client
