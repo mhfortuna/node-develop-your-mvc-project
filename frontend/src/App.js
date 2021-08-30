@@ -22,7 +22,7 @@ function App() {
           <Route path={PUBLIC.PRODUCT} />
           <Route path={PRIVATE.ADMIN_SIGNIN} />
           <Route path={PUBLIC.HOME}>
-            <Home />
+            <Home fullWith />
           </Route>
         </Switch>
       </BrowserRouter>
