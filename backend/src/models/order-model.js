@@ -3,10 +3,10 @@ const { Schema } = require("mongoose");
 
 const orderSchema = new Schema(
   {
-    user_id: {
+    client_id: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "user",
-      required: [true, "User id is required"],
+      ref: "client",
+      required: [true, "client id is required"],
     },
     products: {
       type: [

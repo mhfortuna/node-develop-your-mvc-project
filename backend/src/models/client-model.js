@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 const validator = require("validator");
 
-const userSchema = new Schema(
+const clientSchema = new Schema(
   {
     fullName: {
       type: String,
@@ -26,12 +26,12 @@ const userSchema = new Schema(
 );
 
 // Scheme hooks
-userSchema.post("save", function (error, doc, next) {
+clientSchema.post("save", function (error, doc, next) {
   if (error.code === 11000 && error.keyPattern.email)
     next(new Error("Email already exists!"));
   else next(error);
 });
 
-const User = mongoose.model("user", userSchema);
+const Client = mongoose.model("client", clientSchema);
 
-module.exports = User;
+module.exports = Client;
