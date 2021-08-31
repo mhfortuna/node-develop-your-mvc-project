@@ -2,6 +2,8 @@ import React from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 
+import "./SignUp.scss";
+
 export default function SignUp() {
   return (
     <div className="container">
@@ -40,15 +42,15 @@ export default function SignUp() {
             </div>
             <div className="col-9" />
           </div>
-          <div className="row m-3">
-            <div className="col-6">
+          <div className="row m-3 pt-3 me-4 ms-4 ext-sign">
+            <div className="col-6 ps-0">
               <Button submitButton grey>
-                Sign Up with Google
+                Log up with Google
               </Button>
             </div>
-            <div className="col-6">
+            <div className="col-6 pe-0">
               <Button submitButton grey>
-                Sign up with Facebook
+                Log up with Facebook
               </Button>
             </div>
           </div>
