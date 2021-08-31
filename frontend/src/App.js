@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
 import Home from "./pages/Public/Home";
+import "./sass/main.scss";
 
 function App() {
   return (
