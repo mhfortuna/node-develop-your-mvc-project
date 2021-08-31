@@ -23,7 +23,7 @@ export default function FloatInput({
 
   return (
     <>
-      <div className="form-floating mb-3">
+      <div className="form-floating mb-2">
         <input
           type={type}
           className={classes}
