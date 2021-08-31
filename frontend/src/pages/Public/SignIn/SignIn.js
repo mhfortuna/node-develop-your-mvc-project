@@ -36,12 +36,12 @@ export default function SignUp() {
           </div>
           <div className="row m-3 pt-3 me-4 ms-4 ext-sign">
             <div className="col-6 ps-0">
-              <Button submitButton grey>
+              <Button submitButton light>
                 Log in with Google
               </Button>
             </div>
             <div className="col-6 pe-0">
-              <Button submitButton grey>
+              <Button submitButton light>
                 Log in with Facebook
               </Button>
             </div>
