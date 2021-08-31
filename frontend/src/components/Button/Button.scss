@@ -1,15 +1,10 @@
 @import "bootstrap";
 
-.black {
+.custom-btn {
   @extend .btn;
-  color: white !important;
-  background-color: #343a40 !important;
+  color: white;
 }
-.grey {
-  @extend .btn;
-  color: white !important;
-  background-color: #c4c4c4 !important;
-}
+
 .btn:hover {
   color: white;
 }
