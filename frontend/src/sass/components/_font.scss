@@ -8,6 +8,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "BespokeSerif-Regular";
+  src: url("../../assets/fonts/BespokeSerif-Regular.woff2") format("woff2"),
+    url("../../assets/fonts/BespokeSerif-Regular.woff") format("woff"),
+    url("../../assets/fonts/BespokeSerif-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
 * {
   font-family: "CabinetGrotesk-Variable";
 }
@@ -27,6 +37,9 @@
 }
 .intermediate-text {
   font-size: 16px;
+}
+.medium-big-text {
+  font-size: 24px;
 }
 .big-text {
   font-size: 38px;
