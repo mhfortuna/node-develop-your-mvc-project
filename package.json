@@ -31,6 +31,6 @@
   "scripts": {
     "client": "yarn workspace frontend start",
     "server": "yarn workspace backend start",
-    "start": "concurrently --kill-others-on-fail \backend  \frontend"
+    "start": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   }
 }
