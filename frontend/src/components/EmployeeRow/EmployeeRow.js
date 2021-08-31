@@ -1,5 +1,7 @@
 import React from "react";
 
+import EditBtn from "../EditBtn";
+
 function EmployeeRow({
   image,
   name,
@@ -23,7 +25,9 @@ function EmployeeRow({
       <td>{email}</td>
       <td>{password}</td>
       <td>{role ? "Admin" : "Employee"}</td>
-      <td>edit / remove</td>
+      <td>
+        <EditBtn />
+      </td>
     </>
   );
 }
