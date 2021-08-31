@@ -7,15 +7,14 @@ export default function Button({
   submitButton = false,
   disabled = false,
   black = false,
-  grey = false,
+  light = false,
   children,
   ...props
 }) {
   const classes = cn({
-    btn: true,
-    black: black,
-    grey: grey,
-    "w-100": true,
+    "custom-btn w-100": true,
+    backgroundDark: black,
+    backgroundLight: light,
   });
 
   return (
