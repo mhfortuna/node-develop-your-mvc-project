@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
 
+import "./withLayout.scss";
+
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
