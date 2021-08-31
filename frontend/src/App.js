@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
+import UserDashboard from "./pages/Private/UserDashboard/UserDashboard";
 import Home from "./pages/Public/Home";
 import "./sass/main.scss";
 
@@ -11,7 +12,9 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path={PRIVATE.DASHBOARD_PRODUCTS} />
-          <Route path={PRIVATE.DASHBOARD_USERS} />
+          <Route path={PRIVATE.DASHBOARD_USERS}>
+            <UserDashboard />
+          </Route>
           <Route path={PUBLIC.SUMMARY} />
           <Route path={PUBLIC.PAYMENT} />
           <Route path={PUBLIC.SHIPPING} />
