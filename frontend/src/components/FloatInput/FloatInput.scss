@@ -8,12 +8,25 @@
   font-weight: 900;
 }
 
+label {
+  font-size: 16px;
+  font-weight: 900;
+  transition: 0.5;
+  padding: 8px;
+}
+
 .float-input:focus,
 .float-input:active {
   outline: none;
   -webkit-appearance: none;
   box-shadow: none;
   border-bottom: 1px solid black;
+}
+
+.float-input:focus ~ label,
+.float-input:active ~ label {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .error-msg {

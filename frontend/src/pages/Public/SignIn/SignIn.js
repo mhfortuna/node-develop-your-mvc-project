@@ -1,5 +1,6 @@
 import React from "react";
 import FloatInput from "../../../components/FloatInput";
+import Button from "../../../components/Button";
 
 export default function SignIn() {
   return (
@@ -10,6 +11,9 @@ export default function SignIn() {
         label="Email address"
         placeholder="example@example.com"
       />
+      <Button submitButton black>
+        Button test
+      </Button>
     </div>
   );
 }
