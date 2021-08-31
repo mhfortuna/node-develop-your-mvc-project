@@ -1,0 +1,15 @@
+header {
+  height: 190px;
+  padding: 40px 60px 0 60px;
+  box-shadow: 0 -14px 15px 16px rgba(0, 0, 0, 0.25);
+
+  .title {
+    font-size: 95px;
+    line-height: 74px;
+  }
+
+  .user-name {
+    padding: 7px 0;
+    text-align: right;
+  }
+}
