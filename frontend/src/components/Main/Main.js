@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function Main({ children }) {
-  return <div>{children}</div>;
+import "./Main.scss";
+
+export default function Main({ children, ...props }) {
+  return <main {...props}>{children}</main>;
 }
