@@ -2,7 +2,9 @@ import React from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 
-export default function SignInDashboard() {
+import withLayout from "../../../hoc/withLayout";
+
+function SignInDashboard() {
   return (
     <div className="container">
       <div className="row">
@@ -38,3 +40,5 @@ export default function SignInDashboard() {
     </div>
   );
 }
+
+export default withLayout(SignInDashboard);

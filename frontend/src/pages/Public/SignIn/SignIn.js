@@ -2,9 +2,11 @@ import React from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 
+import withLayout from "../../../hoc/withLayout";
+
 import "./SignIn.scss";
 
-export default function SignUp() {
+function SignUp() {
   return (
     <div className="container">
       <div className="row">
@@ -52,3 +54,5 @@ export default function SignUp() {
     </div>
   );
 }
+
+export default withLayout(SignUp);
