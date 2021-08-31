@@ -1,0 +1,10 @@
+main {
+  flex-grow: 1;
+  padding: 60px;
+  .page-div {
+    height: 100%;
+    .page-left {
+      padding-left: 0;
+    }
+  }
+}
