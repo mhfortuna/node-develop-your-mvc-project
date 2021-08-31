@@ -1,88 +1,97 @@
 import React from "react";
 
 import withLayout from "../../../hoc/withLayout";
-
-// import EmployeeListing from "../../../components/EmployeeListing";
-
-// handleEditEmployee,
-// handleRemoveEmployee,,
+import AddIcon from "../../../components/SVGIcons/AddIcon/AddIcon";
+import DashButton from "../../../components/DashButton/DashButton";
+import EmployeeListing from "../../../components/EmployeeListing";
 
 function UserDashboard() {
-  // const employees = [
-  //   {
-  //     fullName: "Mathias Fortuna",
-  //     email: "mathias@teamrocket.es",
-  //     // Password: 123
-  //     password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-  //     isAdmin: true,
-  //     profileImage:
-  //       "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-  //   },
-  //   {
-  //     fullName: "Nacho Montoya",
-  //     email: "nacho@teamrocket.es",
-  //     // Password: 123
-  //     password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-  //     isAdmin: false,
-  //     profileImage:
-  //       "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-  //   },
-  //   {
-  //     fullName: "Ricard Garcia",
-  //     email: "rick@teamrocket.es",
-  //     // Password: 123
-  //     password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-  //     isAdmin: false,
-  //     profileImage:
-  //       "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-  //   },
-  //   {
-  //     fullName: "Hugo Gomez",
-  //     email: "huguito@teamrocket.es",
-  //     // Password: 123
-  //     password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-  //     isAdmin: false,
-  //     profileImage:
-  //       "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-  //   },
-  //   {
-  //     fullName: "Brahim Benalia",
-  //     email: "brahim@teamrocket.es",
-  //     // Password: 123
-  //     password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-  //     isAdmin: false,
-  //     profileImage:
-  //       "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-  //   },
-  // ];
+  const employees = [
+    {
+      fullName: "Mathias Fortuna",
+      email: "mathias@teamrocket.es",
+      // Password: 123
+      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
+      isAdmin: true,
+      profileImage:
+        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+    },
+    {
+      fullName: "Nacho Montoya",
+      email: "nacho@teamrocket.es",
+      // Password: 123
+      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
+      isAdmin: false,
+      profileImage:
+        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+    },
+    {
+      fullName: "Ricard Garcia",
+      email: "rick@teamrocket.es",
+      // Password: 123
+      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
+      isAdmin: false,
+      profileImage:
+        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+    },
+    {
+      fullName: "Hugo Gomez",
+      email: "huguito@teamrocket.es",
+      // Password: 123
+      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
+      isAdmin: false,
+      profileImage:
+        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+    },
+    {
+      fullName: "Brahim Benalia",
+      email: "brahim@teamrocket.es",
+      // Password: 123
+      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
+      isAdmin: false,
+      profileImage:
+        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+    },
+  ];
+
   return (
     <>
       <div className="d-flex mb-5">
         <div className="btn btn-primary me-3">Users</div>
         <div className="btn btn-secondary">Products</div>
       </div>
-      <table className="table backgroundDark">
-        <thead>
-          <tr>
-            <th scope="col">Profile Image URL</th>
-            <th scope="col">User Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Password</th>
-            <th scope="col">Role</th>
-            <th scope="col">+</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>https://m.media...</td>
-            <td>Otto Clay</td>
-            <td>clayOtto@gmail.com</td>
-            <td>1123fdsasf22330123fsd213</td>
-            <td>admin</td>
-            <td>edit / remove</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div className="table-responsive">
+        <table className="table backgroundDark">
+          <thead>
+            <tr>
+              <th scope="col" className="white text-center font-bold">
+                Profile Image URL
+              </th>
+              <th scope="col" className="white text-center">
+                User Name
+              </th>
+              <th scope="col" className="white text-center">
+                Email
+              </th>
+              {/* <th scope="col" className="white text-center">
+                Password
+              </th> */}
+              <th scope="col" className="white text-center">
+                Role
+              </th>
+              <th scope="col" className="white text-center">
+                <DashButton>
+                  <AddIcon />
+                </DashButton>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <EmployeeListing employees={employees} />
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

@@ -1,34 +1,25 @@
 import React from "react";
+import DashButton from "../DashButton/DashButton";
+import EditIcon from "../SVGIcons/EditIcon";
+import RemoveIcon from "../SVGIcons/RemoveIcon";
 
-import EditBtn from "../EditBtn";
-
-function EmployeeRow({
-  image,
-  name,
-  email,
-  password,
-  role,
-  handleEditEmployee,
-  handleRemoveEmployee,
-}) {
-  function onEditEmploye() {
-    handleEditEmployee(id);
-  }
-  function onRemoveEmployee() {
-    handleRemoveEmployee(id);
-  }
-
+function EmployeeRow({ image, name, email, role }) {
   return (
-    <>
-      <td>{image}</td>
-      <td>{name}</td>
-      <td>{email}</td>
-      <td>{password}</td>
-      <td>{role ? "Admin" : "Employee"}</td>
-      <td>
-        <EditBtn />
+    <tr className="align-center">
+      <td className="white text-center">{image}</td>
+      <td className="white text-center">{name}</td>
+      <td className="white text-center">{email}</td>
+      {/* <td className="white text-center">{password}</td> */}
+      <td className="white text-center">{role ? "Admin" : "Employee"}</td>
+      <td className="text-center">
+        <DashButton>
+          <EditIcon />
+        </DashButton>
+        <DashButton>
+          <RemoveIcon />
+        </DashButton>
       </td>
-    </>
+    </tr>
   );
 }
 
