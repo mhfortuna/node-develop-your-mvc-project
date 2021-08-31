@@ -1,8 +1,15 @@
-.title {
-  font-size: 95px;
-}
+header {
+  height: 190px;
+  padding: 40px 60px 0 60px;
 
-.user-name {
-  font-size: 14px;
-  text-align: right;
+  .title {
+    font-size: 95px;
+    line-height: 74px;
+  }
+
+  .user-name {
+    padding: 7px 0;
+    font-size: 14px;
+    text-align: right;
+  }
 }
