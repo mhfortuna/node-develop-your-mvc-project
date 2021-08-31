@@ -3,15 +3,10 @@ import ProductCard from "../ProductCard";
 
 export default function ProductList({ products }) {
   return (
-    <div className="row">
-      <div className="col-8">
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-          {products.map((product) => (
-            <ProductCard product={product} key={product._id.$oid} />
-          ))}
-        </div>
-      </div>
-      <div className="col-4">DETAILS</div>
+    <div className="row row-cols-1 row-cols-md-3 g-4">
+      {products.map((product) => (
+        <ProductCard product={product} key={product._id.$oid} />
+      ))}
     </div>
   );
 }

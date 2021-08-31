@@ -169,7 +169,12 @@ function Home() {
   ];
   return (
     <div>
-      <ProductList products={productsArray} />
+      <div className="row page-div">
+        <div className="col col-8 page-left">
+          <ProductList products={productsArray} />
+        </div>
+        <div className="col col-4 sidebar">Sidebar</div>
+      </div>
     </div>
   );
 }
