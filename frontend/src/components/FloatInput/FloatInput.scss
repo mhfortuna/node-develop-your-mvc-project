@@ -1,0 +1,23 @@
+@import "bootstrap";
+
+.float-input {
+  @extend .form-control;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.float-input:focus,
+.float-input:active {
+  outline: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  border-bottom: 1px solid black;
+}
+
+.error-msg {
+  @extend .invalid-feedback;
+  font-size: 16px;
+  color: #ab1515;
+}

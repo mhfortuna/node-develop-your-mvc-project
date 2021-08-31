@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
 import Home from "./pages/Public/Home";
+import SignIn from "./pages/Public/SignIn";
 import "./sass/main.scss";
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
           <Route path={PUBLIC.SUMMARY} />
           <Route path={PUBLIC.USER_EDIT} />
           <Route path={PUBLIC.USER_INFO} />
-          <Route path={PUBLIC.SIGNIN} />
+          <Route path={PUBLIC.SIGNIN}>
+            <SignIn />
+          </Route>
           <Route path={PUBLIC.SIGNUP} />
           <Route path={PUBLIC.PRODUCT} />
           <Route path={PRIVATE.ADMIN_SIGNIN} />
