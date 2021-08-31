@@ -4,7 +4,7 @@ import "./Header.scss";
 
 export default function Header({ pageTitle, isLogged }) {
   return (
-    <header className="row">
+    <header className="row m-0">
       <div className="col col-8 title p-0 font-bold">{pageTitle}</div>
       {isLogged ? (
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
