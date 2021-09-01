@@ -9,6 +9,7 @@ import SignIn from "./pages/Public/SignIn";
 import UserInfo from "./pages/Public/UserInfo";
 import SignInDashboard from "./pages/Private/SignIn";
 import SignUp from "./pages/Public/SignUp";
+import ShoppingCart from "./pages/Public/ShoppingCart";
 import Shipping from "./pages/Public/Shipping";
 import Payment from "./pages/Public/Payment/Payment";
 
@@ -31,6 +32,9 @@ function App() {
             <Shipping />
           </Route>
           <Route path={PUBLIC.SUMMARY} />
+          <Route path={PUBLIC.SHOPPING_CART}>
+            <ShoppingCart />
+          </Route>
           <Route path={PUBLIC.USER_INFO}>
             <UserInfo />
           </Route>
