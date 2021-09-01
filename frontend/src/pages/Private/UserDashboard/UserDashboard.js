@@ -65,16 +65,25 @@ function UserDashboard() {
         <table className="table backgroundDark">
           <thead>
             <tr>
-              <th scope="col" className="white text-center font-bold">
+              <th
+                scope="col"
+                className="white text-center font-semi-bold flex-grow-1"
+              >
                 Profile Image URL
               </th>
-              <th scope="col" className="white text-center">
+              <th
+                scope="col"
+                className="white text-center font-semi-bold flex-grow-1"
+              >
                 User Name
               </th>
-              <th scope="col" className="white text-center">
+              <th
+                scope="col"
+                className="white text-center font-semi-bold flex-grow-1"
+              >
                 Email
               </th>
-              <th scope="col" className="white text-center">
+              <th scope="col" className="white text-center font-semi-bold">
                 Role
               </th>
               <th scope="col" className="white text-center">

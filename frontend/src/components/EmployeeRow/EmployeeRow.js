@@ -5,12 +5,14 @@ import RemoveIcon from "../SVGIcons/RemoveIcon";
 
 function EmployeeRow({ image, name, email, role }) {
   return (
-    <tr className="align-center">
-      <td className="white text-center">{image}</td>
-      <td className="white text-center">{name}</td>
-      <td className="white text-center">{email}</td>
-      <td className="white text-center">{role ? "Admin" : "Employee"}</td>
-      <td className="text-center">
+    <tr className="align-center w-100">
+      <td className="white text-center font-light flex-grow-1">{image}</td>
+      <td className="white text-center font-light flex-grow-1">{name}</td>
+      <td className="white text-center font-light flex-grow-1">{email}</td>
+      <td className="white text-center font-light flex-grow-1">
+        {role ? "Admin" : "Employee"}
+      </td>
+      <td className="text-center flex-grow-1">
         <DashButton>
           <EditIcon />
         </DashButton>
