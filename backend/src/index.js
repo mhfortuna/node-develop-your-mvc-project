@@ -10,8 +10,6 @@ connect()
 
     app.listen(config.app.port, () => {
       console.log(`Server running at port ${config.app.port}`);
-
-      
     });
   })
   .catch((err) => {
