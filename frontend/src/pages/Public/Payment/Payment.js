@@ -18,12 +18,12 @@ function Payment() {
     <div>
       <div className="col-8">
         <p className="big-text">Payment method</p>
-        <div className="row m-0">
+        <div className="row col-10 m-0">
           <div className="col-6 mt-3">
             <Button black>Paypal</Button>
           </div>
           <div className="col-6 mt-3">
-            <Button black>Card</Button>
+            <Button transparent>Card</Button>
           </div>
         </div>
 
@@ -71,8 +71,14 @@ function Payment() {
               </div>
             </div>
           </div>
-          <div className="ms-auto col-2 mt-5">
-            <Button black>Payment method</Button>
+
+          <div className="d-flex col-12">
+            <div className="col-2 mt-5">
+              <Button black>Shipping details</Button>
+            </div>
+            <div className="ms-auto col-2 mt-5">
+              <Button black>Summary</Button>
+            </div>
           </div>
         </form>
       </div>

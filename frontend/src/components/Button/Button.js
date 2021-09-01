@@ -8,7 +8,7 @@ export default function Button({
   disabled = false,
   black = false,
   light = false,
-  // transparent = false,
+  transparent = false,
   children,
   ...props
 }) {
@@ -16,7 +16,7 @@ export default function Button({
     "custom-btn w-100": true,
     backgroundDark: black,
     backgroundLight: light,
-    // "btn-outline-dark medium-text": transparent,
+    "btn-outline-dark medium-text": transparent,
   });
 
   return (
