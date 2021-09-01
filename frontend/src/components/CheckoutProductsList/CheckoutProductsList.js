@@ -29,14 +29,33 @@ export default function CheckoutProductsList() {
     },
   ];
 
+  let totalPrice = 0;
+
   return (
-    <div className="row">
-      {checkoutProducts.map((checkoutProduct) => (
-        <CheckoutProduct
-          checkoutProduct={checkoutProduct}
-          key={checkoutProduct._id.$oid}
-        />
-      ))}
+    <div className=" backgroundLight p-5">
+      <div className="row border-bottom border-dark mb-4">
+        <h5 className="font-bold medium-big-text text-truncate">
+          Order information
+        </h5>
+      </div>
+      <div className="row border-bottom border-dark">
+        {checkoutProducts.map((checkoutProduct) => (
+          <CheckoutProduct
+            checkoutProduct={checkoutProduct}
+            key={checkoutProduct._id.$oid}
+          />
+        ))}
+      </div>
+      <div className="row mt-4">
+        <div className="col-12 d-flex justify-content-between">
+          <h5 className="font-bold medium-big-text text-truncate">Checkout</h5>
+          {checkoutProducts.forEach((checkoutProduct) => {
+            totalPrice += checkoutProduct.price * checkoutProduct.quantity;
+            return totalPrice;
+          })}
+          <p className="medium-big-text">${totalPrice}</p>
+        </div>
+      </div>
     </div>
   );
 }

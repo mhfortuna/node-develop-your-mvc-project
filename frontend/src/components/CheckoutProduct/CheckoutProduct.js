@@ -3,14 +3,14 @@ import React from "react";
 export default function CheckoutProduct({ checkoutProduct }) {
   return (
     <>
-      <div className="col-6 mt-5">
+      <div className="col-6 mb-4">
         <img
           className="h-100 product-card-img img-fluid"
           src={checkoutProduct.images.main}
           alt={checkoutProduct.title}
         />
       </div>
-      <div className="col-6 mt-5">
+      <div className="col-6 mb-4">
         <div className="row">
           <h5 className="font-bold medium-big-text text-truncate">
             {checkoutProduct.title}
