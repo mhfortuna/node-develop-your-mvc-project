@@ -2,10 +2,13 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
+
 import Home from "./pages/Public/Home";
 import SignIn from "./pages/Public/SignIn";
+import UserInfo from "./pages/Public/UserInfo";
 import SignInDashboard from "./pages/Private/SignIn";
 import SignUp from "./pages/Public/SignUp";
+
 import "./sass/main.scss";
 
 function App() {
@@ -19,8 +22,9 @@ function App() {
           <Route path={PUBLIC.PAYMENT} />
           <Route path={PUBLIC.SHIPPING} />
           <Route path={PUBLIC.SUMMARY} />
-          <Route path={PUBLIC.USER_EDIT} />
-          <Route path={PUBLIC.USER_INFO} />
+          <Route path={PUBLIC.USER_INFO}>
+            <UserInfo />
+          </Route>
           <Route path={PUBLIC.SIGNIN}>
             <SignIn />
           </Route>
