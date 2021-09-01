@@ -5,6 +5,8 @@ import AddIcon from "../../../components/SVGIcons/AddIcon/AddIcon";
 import DashButton from "../../../components/DashButton/DashButton";
 import EmployeeListing from "../../../components/EmployeeListing";
 
+import Button from "../../../components/Button";
+
 function EmployeeDashboard() {
   const employees = [
     {
@@ -57,8 +59,12 @@ function EmployeeDashboard() {
   return (
     <>
       <div className="d-flex mb-5">
-        <div className="btn btn-primary me-3">Users</div>
-        <div className="btn btn-secondary">Products</div>
+        <div className="mt-5 me-3">
+          <Button black>Users</Button>
+        </div>
+        <div className="mt-5 me-3">
+          <Button transparent>Products</Button>
+        </div>
       </div>
 
       <div className="table-responsive">

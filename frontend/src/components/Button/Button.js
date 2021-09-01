@@ -8,13 +8,18 @@ export default function Button({
   disabled = false,
   black = false,
   light = false,
+  transparent = false,
+  fullWidth = false,
   children,
   ...props
 }) {
   const classes = cn({
-    "custom-btn w-100": true,
+    "custom-btn": true,
+    "px-4": !fullWidth,
+    "w-100": fullWidth,
     backgroundDark: black,
     backgroundLight: light,
+    "btn-outline-dark medium-text": transparent,
   });
 
   return (

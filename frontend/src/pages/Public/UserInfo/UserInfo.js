@@ -4,8 +4,6 @@ import Button from "../../../components/Button";
 
 import withLayout from "../../../hoc/withLayout";
 
-import "./UserInfo.scss";
-
 function UserInfo() {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
@@ -34,10 +32,10 @@ function UserInfo() {
   };
 
   return (
-    <div>
-      <p className="big-text">Account information</p>
-      <form>
-        <div className="col-8">
+    <>
+      <div className="col-6">
+        <p className="big-text">Account information</p>
+        <form>
           <div className="row">
             <div className="col col-6">
               <FloatInput
@@ -115,14 +113,14 @@ function UserInfo() {
             </div>
           </div>
 
-          <div className="ms-auto col-6 col-sm-3 col-md-2 mt-5">
-            <Button submitButton black>
-              Edit
-            </Button>
+          <div className="d-flex mt-5">
+            <div className="d-inline-block ms-auto">
+              <Button black>Edit</Button>
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }
 
