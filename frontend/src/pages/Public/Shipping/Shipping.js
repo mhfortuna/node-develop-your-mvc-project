@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
+import CheckoutProductsList from "../../../components/CheckoutProductsList";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -32,11 +33,11 @@ function Shipping() {
   };
 
   return (
-    <div>
-      <p className="big-text">Account information</p>
-      <form>
-        <div className="col-8">
-          <div className="col-10">
+    <div className="row">
+      <div className="col-8">
+        <p className="big-text">Account information</p>
+        <form>
+          <div className="col-8">
             <div className="row">
               <div className="col col-6">
                 <FloatInput
@@ -114,11 +115,15 @@ function Shipping() {
               </div>
             </div>
           </div>
-          <div className="ms-auto col-2 mt-5">
+          <div className="ms-auto col-4 big-mt px-5">
             <Button black>Payment method</Button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+
+      <div className="col-4">
+        <CheckoutProductsList />
+      </div>
     </div>
   );
 }

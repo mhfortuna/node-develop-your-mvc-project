@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
+import CheckoutProductsList from "../../../components/CheckoutProductsList";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -15,15 +16,20 @@ function Payment() {
   };
 
   return (
-    <div>
+    <div className="row">
       <div className="col-8">
         <p className="big-text">Payment method</p>
+
         <div className="row col-10 m-0">
           <div className="col-6 mt-3">
-            <Button black>Paypal</Button>
+            <Button black fullWidth>
+              Paypal
+            </Button>
           </div>
           <div className="col-6 mt-3">
-            <Button transparent>Card</Button>
+            <Button transparent fullWidth>
+              Card
+            </Button>
           </div>
         </div>
 
@@ -72,15 +78,19 @@ function Payment() {
             </div>
           </div>
 
-          <div className="d-flex col-12">
+          <div className="d-flex col-12 big-mt">
             <div className="col-2 mt-5">
               <Button black>Shipping details</Button>
             </div>
-            <div className="ms-auto col-2 mt-5">
+            <div className="ms-auto col-2 mt-5 big-mt">
               <Button black>Summary</Button>
             </div>
           </div>
         </form>
+      </div>
+
+      <div className="col-4">
+        <CheckoutProductsList />
       </div>
     </div>
   );

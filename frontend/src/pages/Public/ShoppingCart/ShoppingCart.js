@@ -1,6 +1,7 @@
 import React from "react";
 
 import ShoppingCartList from "../../../components/ShoppingCartList/ShoppingCartList";
+import CheckoutProductsList from "../../../components/CheckoutProductsList";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -34,7 +35,9 @@ function ShoppingCart() {
       <div className="col col-8 page-left">
         <ShoppingCartList cartItems={cartItems} />
       </div>
-      <div className="col col-4 sidebar">Sidebar</div>
+      <div className="col-4">
+        <CheckoutProductsList />
+      </div>
     </div>
   );
 }
