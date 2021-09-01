@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 
 import withLayout from "../../../hoc/withLayout";
 
+import "./UserInfo.scss";
+
 function UserInfo() {
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+
+  const handleChangePhone = (e) => {
+    const { value, maxLength } = e.target;
+    const phoneNumber = value.slice(0, maxLength);
+
+    if (e.nativeEvent.inputType === "deleteContentBackward") {
+      setPhone(phoneNumber);
+      return;
+    }
+
+    const x = phoneNumber
+      .replace(/\D/g, "")
+      .match(/(\d{0,3})(\d{0,3})(\d{0,3})/);
+    const pattern = `${x[1] ?? x[1]} ${x[2] ?? x[2]} ${x[3] ?? x[3]}`;
+
+    if (pattern.length > 2) {
+      setPhone(pattern);
+    }
+  };
+
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+
   return (
     <div>
       <p className="big-text">Account information</p>
@@ -17,6 +45,9 @@ function UserInfo() {
                 type="text"
                 label="First Name"
                 placeholder="First name"
+                value={name}
+                handleChange={handleChangeName}
+                handleBlur={handleChangeName}
               />
             </div>
             <div className="col col-6">
@@ -31,10 +62,12 @@ function UserInfo() {
             <div className="col col-6">
               <FloatInput
                 id="phoneNumber"
-                type="number"
+                type="text"
                 label="Phone number"
                 placeholder="Phone Number"
-                maxLength={9}
+                maxLength={11}
+                value={phone}
+                handleChange={handleChangePhone}
               />
             </div>
             <div className="col col-6">
@@ -82,9 +115,9 @@ function UserInfo() {
             </div>
           </div>
 
-          <div className="bg-dark ms-auto col-1 mt-5">
+          <div className="ms-auto col-6 col-sm-3 col-md-2 mt-5">
             <Button submitButton black>
-              Update
+              Edit
             </Button>
           </div>
         </div>
