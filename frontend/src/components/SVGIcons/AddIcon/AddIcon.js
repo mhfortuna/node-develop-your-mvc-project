@@ -1,11 +1,11 @@
 import React from "react";
 
-function AddIcon() {
+function AddIcon({ size = 16 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width={size}
+      height={size}
       fill="currentColor"
       className="bi bi-plus-circle"
       viewBox="0 0 16 16"
