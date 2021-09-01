@@ -11,6 +11,7 @@ export default function Button({
   transparent = false,
   fullWidth = false,
   children,
+  handleClick = () => {},
   ...props
 }) {
   const classes = cn({
@@ -27,6 +28,7 @@ export default function Button({
       className={classes}
       type={submitButton ? "submit" : "button"}
       disabled={disabled}
+      onClick={handleClick}
       {...props}
     >
       {children}

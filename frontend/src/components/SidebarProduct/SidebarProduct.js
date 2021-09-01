@@ -6,6 +6,8 @@ import MinusCircleIcon from "../SVGIcons/MinusCircleIcon";
 import "./SidebarProduct.scss";
 
 export default function SidebarProduct({ product }) {
+  const handleClick = () => {};
+
   return (
     <div className="col col-4 sidebar pe-0 d-flex flex-column">
       <div className="font-bold big-text product-title">{product.title}</div>
@@ -29,7 +31,9 @@ export default function SidebarProduct({ product }) {
         {product.description}
       </div>
       <div className="button-wrapper ms-auto w-25">
-        <Button black>Add to cart</Button>
+        <Button handleClick={handleClick} black>
+          Add to cart
+        </Button>
       </div>
     </div>
   );
