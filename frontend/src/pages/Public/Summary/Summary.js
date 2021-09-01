@@ -32,6 +32,7 @@ function Summary() {
                 <p>ex@ex.com</p>
               </div>
             </div>
+
             <div className="col-4">
               <div>
                 <p className="font-bold mb-0">Address</p>
