@@ -13,10 +13,21 @@ export const PUBLIC = {
   USER_EDIT: "/user/edit",
 };
 
+//! PRIVATE PAGES
+
 export const PRIVATE = {
   ADMIN_SIGNIN: "/admin",
   DASHBOARD_USERS: "/admin/dashboard/employees",
   DASHBOARD_PRODUCTS: "/admin/dashboard/products",
 };
 
-//! PRIVATE PAGES
+// API
+
+export const API = {
+  MAIN: "http://localhost:4000",
+  PRODUCTS: "/products",
+  EMPLOYEES: "/employees",
+  EMPLOYEES_SIGN_IN: "/employees/signin",
+  CLIENTS: "/clients",
+  CLIENTS_SIGN_IN: "/clients/signin",
+};
