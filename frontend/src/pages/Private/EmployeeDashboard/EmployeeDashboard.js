@@ -87,7 +87,7 @@ function EmployeeDashboard() {
                 Role
               </th>
               <th scope="col" className="white text-center">
-                <DashButton>
+                <DashButton white>
                   <AddIcon />
                 </DashButton>
               </th>

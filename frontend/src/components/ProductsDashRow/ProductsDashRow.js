@@ -43,10 +43,10 @@ function ProductsDashRow({
       <td className="customDark text-center font-light flex-grow-1">{price}</td>
       <td className="customDark text-center font-light flex-grow-1">{stock}</td>
       <td className="customDark text-center flex-grow-1">
-        <DashButton className="customB">
+        <DashButton dark>
           <EditIcon />
         </DashButton>
-        <DashButton>
+        <DashButton dark>
           <RemoveIcon />
         </DashButton>
       </td>
