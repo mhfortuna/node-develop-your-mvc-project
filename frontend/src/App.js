@@ -13,6 +13,7 @@ import Shipping from "./pages/Public/Shipping";
 import Payment from "./pages/Public/Payment/Payment";
 
 import "./sass/main.scss";
+import Summary from "./pages/Public/Summary/Summary";
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
           <Route path={PRIVATE.DASHBOARD_USERS}>
             <EmployeeDashboard />
           </Route>
-          <Route path={PUBLIC.SUMMARY} />
+          <Route path={PUBLIC.SUMMARY}>
+            <Summary />
+          </Route>
           <Route path={PUBLIC.PAYMENT}>
             <Payment />
           </Route>
