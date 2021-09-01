@@ -1,125 +1,70 @@
-import React, { useState } from "react";
-import FloatInput from "../../../components/FloatInput";
+import React from "react";
 import Button from "../../../components/Button";
+// import CheckoutProductsList from "../../../components/CheckoutProductsList";
 
 import withLayout from "../../../hoc/withLayout";
 
 function Summary() {
-  const [name, setName] = useState();
-  const [phone, setPhone] = useState();
-
-  const handleChangePhone = (e) => {
-    const { value, maxLength } = e.target;
-    const phoneNumber = value.slice(0, maxLength);
-
-    if (e.nativeEvent.inputType === "deleteContentBackward") {
-      setPhone(phoneNumber);
-      return;
-    }
-
-    const x = phoneNumber
-      .replace(/\D/g, "")
-      .match(/(\d{0,3})(\d{0,3})(\d{0,3})/);
-    const pattern = `${x[1] ?? x[1]} ${x[2] ?? x[2]} ${x[3] ?? x[3]}`;
-
-    if (pattern.length > 2) {
-      setPhone(pattern);
-    }
-  };
-
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-
   return (
-    <div>
-      <p className="big-text">Account information</p>
-      <form>
-        <div className="col-8">
-          <div className="col-10">
-            <div className="row">
-              <div className="col col-6">
-                <FloatInput
-                  id="firstName"
-                  type="text"
-                  label="First Name"
-                  placeholder="First name"
-                  value={name}
-                  handleChange={handleChangeName}
-                  handleBlur={handleChangeName}
-                />
-              </div>
-              <div className="col col-6">
-                <FloatInput
-                  id="lastName"
-                  type="text"
-                  label="Last name"
-                  placeholder="Last Name"
-                />
-              </div>
+    <>
+      <div className="row col-10">
+        <h2 className="big-text mb-3">Summary</h2>
 
-              <div className="col col-6">
-                <FloatInput
-                  id="phoneNumber"
-                  type="text"
-                  label="Phone number"
-                  placeholder="Phone Number"
-                  maxLength={11}
-                  value={phone}
-                  handleChange={handleChangePhone}
-                />
-              </div>
-              <div className="col col-6">
-                <FloatInput
-                  id="email"
-                  type="email"
-                  label="Email address"
-                  placeholder="example@example.com"
-                />
-              </div>
+        <section className="col-6">
+          <h3 className="font-bold fs-2 mb-3">Customer information</h3>
 
-              <div className="col col-12">
-                <FloatInput
-                  id="address"
-                  type="address"
-                  label="Address"
-                  placeholder="address"
-                />
+          <div className="row">
+            <div className="col-4">
+              <div>
+                <p className="font-bold mb-0">First name</p>
+                <p>Joe</p>
               </div>
-
-              <div className="col col-4">
-                <FloatInput
-                  id="zipCode"
-                  type="number"
-                  label="Zip code"
-                  placeholder="zipCode"
-                  maxLength={8}
-                />
+              <div>
+                <p className="font-bold mb-0">Last name</p>
+                <p>Joe</p>
               </div>
-              <div className="col col-4">
-                <FloatInput
-                  id="city"
-                  type="text"
-                  label="City"
-                  placeholder="city"
-                />
+              <div>
+                <p className="font-bold mb-0">Phone</p>
+                <p>686 507 212</p>
               </div>
-              <div className="col col-4">
-                <FloatInput
-                  id="country"
-                  type="text"
-                  label="Country"
-                  placeholder="country"
-                />
+              <div>
+                <p className="font-bold mb-0">E-mail</p>
+                <p>ex@ex.com</p>
+              </div>
+            </div>
+            <div className="col-4">
+              <div>
+                <p className="font-bold mb-0">Address</p>
+                <p>Address</p>
+              </div>
+              <div>
+                <p className="font-bold mb-0">Zip code</p>
+                <p>Zip code</p>
+              </div>
+              <div>
+                <p className="font-bold mb-0">City</p>
+                <p>City</p>
+              </div>
+              <div>
+                <p className="font-bold mb-0">State</p>
+                <p>State</p>
               </div>
             </div>
           </div>
-          <div className="ms-auto col-2 mt-5">
-            <Button black>Payment method</Button>
-          </div>
+        </section>
+
+        <section className="col-6">Aqui va CheckoutProductsList</section>
+      </div>
+
+      <div className="row mt-5">
+        <div className="col-2 big-mt">
+          <Button black>Payment method</Button>
         </div>
-      </form>
-    </div>
+        <div className="ms-auto col-1 big-mt">
+          <Button black> Home</Button>
+        </div>
+      </div>
+    </>
   );
 }
 

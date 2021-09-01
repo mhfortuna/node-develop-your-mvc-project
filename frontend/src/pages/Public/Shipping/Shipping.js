@@ -120,8 +120,7 @@ function Shipping() {
           </div>
         </form>
       </div>
-      {/* <div className="col-4"> */}
-      {/* </div> */}
+
       <div className="col-4">
         <CheckoutProductsList />
       </div>
