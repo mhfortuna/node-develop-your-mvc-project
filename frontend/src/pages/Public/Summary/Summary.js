@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../../components/Button";
-// import CheckoutProductsList from "../../../components/CheckoutProductsList";
+import CheckoutProductsList from "../../../components/CheckoutProductsList";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -8,10 +8,12 @@ function Summary() {
   return (
     <>
       <div className="row col-10">
-        <h2 className="big-text mb-3">Summary</h2>
-
         <section className="col-6">
-          <h3 className="font-bold fs-3 mb-3">Customer information</h3>
+          <h2 className="big-text mb-3">Summary</h2>
+
+          <h3 className="font-bold medium-big-text mb-3">
+            Customer information
+          </h3>
 
           <div className="row">
             <div className="col-6">
@@ -54,7 +56,9 @@ function Summary() {
           </div>
         </section>
 
-        <section className="col-6">Aqui va CheckoutProductsList</section>
+        <section className="col-6">
+          <CheckoutProductsList />
+        </section>
       </div>
 
       <div className="row mt-5">
