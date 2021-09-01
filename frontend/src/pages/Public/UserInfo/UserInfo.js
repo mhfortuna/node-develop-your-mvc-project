@@ -4,8 +4,6 @@ import Button from "../../../components/Button";
 
 import withLayout from "../../../hoc/withLayout";
 
-import "./UserInfo.scss";
-
 function UserInfo() {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();

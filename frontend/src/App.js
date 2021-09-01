@@ -10,6 +10,8 @@ import UserInfo from "./pages/Public/UserInfo";
 import SignInDashboard from "./pages/Private/SignIn";
 import SignUp from "./pages/Public/SignUp";
 import ShoppingCart from "./pages/Public/ShoppingCart";
+import Shipping from "./pages/Public/Shipping";
+import Payment from "./pages/Public/Payment/Payment";
 
 import "./sass/main.scss";
 
@@ -23,8 +25,12 @@ function App() {
             <EmployeeDashboard />
           </Route>
           <Route path={PUBLIC.SUMMARY} />
-          <Route path={PUBLIC.PAYMENT} />
-          <Route path={PUBLIC.SHIPPING} />
+          <Route path={PUBLIC.PAYMENT}>
+            <Payment />
+          </Route>
+          <Route path={PUBLIC.SHIPPING}>
+            <Shipping />
+          </Route>
           <Route path={PUBLIC.SUMMARY} />
           <Route path={PUBLIC.SHOPPING_CART}>
             <ShoppingCart />
