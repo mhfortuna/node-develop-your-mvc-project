@@ -7,6 +7,7 @@
   font-size: 16px;
   font-weight: 900;
 }
+
 .form-floating > label {
   padding: 2rem 0.75rem !important;
 }
@@ -27,9 +28,15 @@ label {
 }
 
 .float-input:focus ~ label,
-.float-input:active ~ label {
+.float-input:active ~ label,
+.float-input:not(:placeholder-shown) ~ label {
   font-size: 16px;
   font-weight: 500;
+  padding: 1rem 0.75rem !important;
+}
+
+.form-floating > .float-input:not(:placeholder-shown) {
+  padding-top: 2.625rem !important;
 }
 
 .error-msg {

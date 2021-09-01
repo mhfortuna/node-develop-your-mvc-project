@@ -11,6 +11,7 @@ export default function FloatInput({
   placeholder = "",
   handleChange = () => {},
   handleBlur = () => {},
+  handleInput = () => {},
   errorMessage,
   hasErrorMessage,
   ...props
@@ -33,6 +34,7 @@ export default function FloatInput({
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
+          onInput={handleInput}
           {...props}
         />
         {hasErrorMessage && errorMessage && (
