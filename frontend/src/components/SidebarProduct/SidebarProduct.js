@@ -8,7 +8,7 @@ import "./SidebarProduct.scss";
 export default function SidebarProduct({ product }) {
   return (
     <div className="col col-4 sidebar pe-0 d-flex flex-column">
-      <div className="font-bold big-text produc-title">{product.title}</div>
+      <div className="font-bold big-text product-title">{product.title}</div>
       <div className="product-nums">
         <div className="product-quantity">
           <div className="product-subtitle font-bold">Quantity</div>
@@ -20,7 +20,9 @@ export default function SidebarProduct({ product }) {
         </div>
         <div className="product-price d-inline">
           <div className="product-subtitle font-bold">Price</div>
-          <div className="product-number font-regular">${product.price}</div>
+          <div className="product-number font-regular">
+            ${product.price.toFixed(2)}
+          </div>
         </div>
       </div>
       <div className="product-description description-text">

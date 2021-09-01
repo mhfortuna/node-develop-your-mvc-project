@@ -6,7 +6,7 @@ import "./ProductCard.scss";
 export default function ProductCard({ product }) {
   return (
     <div className="col">
-      <Link to={`/products/${product._id}`}>
+      <Link to={`/product/${product._id}`}>
         <div className="card h-100 border-0">
           <div className="border product-card-img-container d-flex align-items-center justify-content-center">
             <img

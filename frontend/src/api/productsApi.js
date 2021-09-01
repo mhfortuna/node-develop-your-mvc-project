@@ -11,3 +11,7 @@ export function makeProductsApi() {
 export function getAllProducts(api = makeProductsApi()) {
   return api.get(``);
 }
+
+export function getProduct(productId, api = makeProductsApi()) {
+  return api.get(`/${productId}`);
+}
