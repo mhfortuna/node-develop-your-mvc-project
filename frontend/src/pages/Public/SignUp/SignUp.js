@@ -49,12 +49,12 @@ export default function SignUp() {
             </div>
             <div className="row m-3 pt-3 me-4 ms-4 ext-sign">
               <div className="col-6 ps-0">
-                <Button submitButton light>
+                <Button submitButton light fullWidth>
                   Log up with Google
                 </Button>
               </div>
               <div className="col-6 pe-0">
-                <Button submitButton light>
+                <Button submitButton light fullWidth>
                   Log up with Facebook
                 </Button>
               </div>

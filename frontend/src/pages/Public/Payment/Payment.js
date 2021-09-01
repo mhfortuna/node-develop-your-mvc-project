@@ -19,12 +19,17 @@ function Payment() {
     <div className="row">
       <div className="col-8">
         <p className="big-text">Payment method</p>
+
         <div className="row col-10 m-0">
           <div className="col-6 mt-3">
-            <Button black>Paypal</Button>
+            <Button black fullWidth>
+              Paypal
+            </Button>
           </div>
           <div className="col-6 mt-3">
-            <Button transparent>Card</Button>
+            <Button transparent fullWidth>
+              Card
+            </Button>
           </div>
         </div>
 
@@ -83,6 +88,7 @@ function Payment() {
           </div>
         </form>
       </div>
+
       <div className="col-4">
         <CheckoutProductsList />
       </div>
