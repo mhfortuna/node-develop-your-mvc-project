@@ -5,7 +5,7 @@ import AddIcon from "../../../components/SVGIcons/AddIcon/AddIcon";
 import DashButton from "../../../components/DashButton/DashButton";
 import EmployeeListing from "../../../components/EmployeeListing";
 
-function UserDashboard() {
+function EmployeeDashboard() {
   const employees = [
     {
       fullName: "Mathias Fortuna",
@@ -102,4 +102,4 @@ function UserDashboard() {
   );
 }
 
-export default withLayout(UserDashboard);
+export default withLayout(EmployeeDashboard);

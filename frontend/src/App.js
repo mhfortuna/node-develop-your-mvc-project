@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
 
-import UserDashboard from "./pages/Private/UserDashboard/UserDashboard";
+import EmployeeDashboard from "./pages/Private/EmployeeDashboard/EmployeeDashboard";
 import Home from "./pages/Public/Home";
 import SignIn from "./pages/Public/SignIn";
 import UserInfo from "./pages/Public/UserInfo";
@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route path={PRIVATE.DASHBOARD_PRODUCTS} />
           <Route path={PRIVATE.DASHBOARD_USERS}>
-            <UserDashboard />
+            <EmployeeDashboard />
           </Route>
           <Route path={PUBLIC.SUMMARY} />
           <Route path={PUBLIC.PAYMENT} />
