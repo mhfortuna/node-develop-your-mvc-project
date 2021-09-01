@@ -32,7 +32,7 @@ export default function CheckoutProductsList() {
   let totalPrice = 0;
 
   return (
-    <div className=" backgroundLight p-5">
+    <div className=" backgroundCheckout p-5">
       <div className="row border-bottom border-dark mb-4">
         <h5 className="font-bold medium-big-text text-truncate">
           Order information
@@ -48,7 +48,7 @@ export default function CheckoutProductsList() {
       </div>
       <div className="row mt-4">
         <div className="col-12 d-flex justify-content-between">
-          <h5 className="font-bold medium-big-text text-truncate">Checkout</h5>
+          <h5 className="font-bold medium-big-text text-truncate">Total</h5>
           {checkoutProducts.forEach((checkoutProduct) => {
             totalPrice += checkoutProduct.price * checkoutProduct.quantity;
             return totalPrice;
