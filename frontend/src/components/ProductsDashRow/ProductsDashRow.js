@@ -18,15 +18,12 @@ function ProductsDashRow({
       <td className="customDark text-center font-light flex-grow-1">
         {productName}
       </td>
-      <td
-        className="customDark text-center font-light flex-grow-1 text-truncate w-25"
-        style={{ maxWidth: "150px" }}
-      >
+      <td className="customDark text-center font-light flex-grow-1 truncate">
         {description}
       </td>
 
       <td className="customDark text-center font-light flex-grow-1">
-        <div className="d-flex">
+        <div className="d-flex justify-content-center">
           {lens.map((art) => (
             <p key={art} className="me-1">
               {art},
@@ -34,10 +31,7 @@ function ProductsDashRow({
           ))}
         </div>
       </td>
-      <td
-        className="customDark text-center font-light flex-grow-1 text-truncate"
-        style={{ maxWidth: "150px" }}
-      >
+      <td className="customDark text-center font-light flex-grow-1 truncate">
         {image}
       </td>
       <td className="customDark text-center font-light flex-grow-1">{price}</td>

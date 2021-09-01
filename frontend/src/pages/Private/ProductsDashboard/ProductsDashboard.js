@@ -145,22 +145,13 @@ function ProductsDashboard() {
         <table className="table">
           <thead>
             <tr>
-              <th
-                scope="col"
-                className="customDark text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="customDark text-center font-semi-bold">
                 Product ID
               </th>
-              <th
-                scope="col"
-                className="customDark text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="customDark text-center font-semi-bold">
                 Product Name
               </th>
-              <th
-                scope="col"
-                className="customDark text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="customDark text-center font-semi-bold">
                 Description
               </th>
               <th scope="col" className="customDark text-center font-semi-bold">
