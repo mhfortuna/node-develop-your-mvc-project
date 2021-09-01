@@ -5,6 +5,8 @@ import Button from "../../../components/Button";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 
+import CheckoutProductsList from "../../../components/CheckoutProductsList";
+
 import "./SignIn.scss";
 
 export default function SignUp() {
@@ -53,6 +55,14 @@ export default function SignUp() {
             </div>
           </div>
           <div className="col-3" />
+        </div>
+      </div>
+      <div className="container flex-grow-1 align-items-center">
+        <div className="row">
+          <div className="col-8" />
+          <div className="col-4">
+            <CheckoutProductsList />
+          </div>
         </div>
       </div>
       <Footer />
