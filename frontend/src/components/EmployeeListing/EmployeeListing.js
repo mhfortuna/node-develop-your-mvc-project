@@ -14,7 +14,6 @@ export default function EmployeeListing({
           image={employee.profileImage}
           name={employee.fullName}
           email={employee.email}
-          // password={employee.password}
           role={employee.isAdmin}
         />
       ))}

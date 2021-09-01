@@ -74,9 +74,6 @@ function UserDashboard() {
               <th scope="col" className="white text-center">
                 Email
               </th>
-              {/* <th scope="col" className="white text-center">
-                Password
-              </th> */}
               <th scope="col" className="white text-center">
                 Role
               </th>

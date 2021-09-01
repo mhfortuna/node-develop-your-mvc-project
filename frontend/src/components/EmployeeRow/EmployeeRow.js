@@ -9,7 +9,6 @@ function EmployeeRow({ image, name, email, role }) {
       <td className="white text-center">{image}</td>
       <td className="white text-center">{name}</td>
       <td className="white text-center">{email}</td>
-      {/* <td className="white text-center">{password}</td> */}
       <td className="white text-center">{role ? "Admin" : "Employee"}</td>
       <td className="text-center">
         <DashButton>
