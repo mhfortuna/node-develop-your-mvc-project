@@ -29,9 +29,32 @@ function Product() {
     __v: 0,
   };
 
+  const mainImageURL = mockedProduct.images.main;
+  const otherImagesURL = mockedProduct.images.others;
+
   return (
     <div className="row page-div">
-      <div className="col col-8 page-left">Product images</div>
+      <div className="col col-8 m-0 page-left">
+        <img
+          className="w-100 my-0 product-image main-image"
+          src={mainImageURL}
+          alt={`Main ${mockedProduct.title}`}
+        />
+        <div className="row g-4 mt-1 other-images">
+          {otherImagesURL.map((otherImg) => {
+            return (
+              <div key={otherImg} className="col col-6 other-image-wrapper">
+                <img
+                  className="product-image other-image"
+                  key={otherImg}
+                  src={otherImg}
+                  alt="Other"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <SidebarProduct product={mockedProduct} />
     </div>
   );

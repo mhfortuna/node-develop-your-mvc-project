@@ -26,7 +26,7 @@ export default function SidebarProduct({ product }) {
       <div className="product-description description-text">
         {product.description}
       </div>
-      <div className="button-wrapper ms-auto mt-auto w-25">
+      <div className="button-wrapper ms-auto w-25">
         <Button black>Add to cart</Button>
       </div>
     </div>
