@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../../components/Button/Button";
 import ProductDashListing from "../../../components/ProductsDashListing/ProductDashListing";
 // import EmployeeListing from "../../../components/EmployeeListing";
 
@@ -137,8 +138,12 @@ function ProductsDashboard() {
   return (
     <>
       <div className="d-flex mb-5">
-        <div className="btn btn-secondary me-3">Users</div>
-        <div className="btn btn-primary">Products</div>
+        <div className="mt-5 me-3">
+          <Button transparent>Users</Button>
+        </div>
+        <div className="mt-5 me-3">
+          <Button black>Products</Button>
+        </div>
       </div>
 
       <div className="table-responsive">
