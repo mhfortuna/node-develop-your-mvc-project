@@ -65,22 +65,13 @@ function EmployeeDashboard() {
         <table className="table backgroundDark">
           <thead>
             <tr>
-              <th
-                scope="col"
-                className="white text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="white text-center font-semi-bold">
                 Profile Image URL
               </th>
-              <th
-                scope="col"
-                className="white text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="white text-center font-semi-bold">
                 User Name
               </th>
-              <th
-                scope="col"
-                className="white text-center font-semi-bold flex-grow-1"
-              >
+              <th scope="col" className="white text-center font-semi-bold">
                 Email
               </th>
               <th scope="col" className="white text-center font-semi-bold">
