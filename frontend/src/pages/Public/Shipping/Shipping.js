@@ -115,9 +115,7 @@ function Shipping() {
             </div>
           </div>
           <div className="ms-auto col-2 mt-5">
-            <Button submitButton black>
-              Payment method
-            </Button>
+            <Button black>Payment method</Button>
           </div>
         </div>
       </form>
