@@ -61,3 +61,11 @@
 .big-text {
   font-size: 38px;
 }
+
+// Overflow
+.truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 150px;
+}

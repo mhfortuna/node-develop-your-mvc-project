@@ -13,10 +13,10 @@ function EmployeeRow({ image, name, email, role }) {
         {role ? "Admin" : "Employee"}
       </td>
       <td className="text-center flex-grow-1">
-        <DashButton>
+        <DashButton white>
           <EditIcon />
         </DashButton>
-        <DashButton>
+        <DashButton white>
           <RemoveIcon />
         </DashButton>
       </td>

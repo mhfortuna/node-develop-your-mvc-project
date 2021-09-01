@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PUBLIC, PRIVATE } from "./constants/routes";
 import { CheckoutContextProvider } from "./context/checkout-context";
 
-import EmployeeDashboard from "./pages/Private/EmployeeDashboard/EmployeeDashboard";
+import EmployeeDashboard from "./pages/Private/EmployeeDashboard";
+import ProductsDashboard from "./pages/Private/ProductsDashboard";
 import Home from "./pages/Public/Home";
 import Product from "./pages/Public/Product";
 import SignIn from "./pages/Public/SignIn";
@@ -22,7 +23,9 @@ function App() {
     <CheckoutContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route path={PRIVATE.DASHBOARD_PRODUCTS} />
+          <Route path={PRIVATE.DASHBOARD_PRODUCTS}>
+            <ProductsDashboard />
+          </Route>
           <Route path={PRIVATE.DASHBOARD_USERS}>
             <EmployeeDashboard />
           </Route>
