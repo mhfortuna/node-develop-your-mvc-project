@@ -59,12 +59,10 @@ function EmployeeDashboard() {
   return (
     <>
       <div className="d-flex mb-5">
-        {/* <div className="btn btn-primary me-3">Users</div>
-        <div className="btn btn-secondary">Products</div> */}
-        <div className="col-2 mt-5 me-3">
+        <div className="mt-5 me-3">
           <Button black>Users</Button>
         </div>
-        <div className="col-2 mt-5">
+        <div className="mt-5 me-3">
           <Button transparent>Products</Button>
         </div>
       </div>
