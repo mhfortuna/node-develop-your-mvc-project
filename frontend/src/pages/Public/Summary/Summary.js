@@ -11,10 +11,10 @@ function Summary() {
         <h2 className="big-text mb-3">Summary</h2>
 
         <section className="col-6">
-          <h3 className="font-bold fs-2 mb-3">Customer information</h3>
+          <h3 className="font-bold fs-3 mb-3">Customer information</h3>
 
           <div className="row">
-            <div className="col-4">
+            <div className="col-6">
               <div>
                 <p className="font-bold mb-0">First name</p>
                 <p>Joe</p>
