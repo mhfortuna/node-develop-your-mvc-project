@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
     <div className="col">
       <Link to={`/product/${product._id}`}>
         <div className="card h-100 border-0">
-          <div className="border product-card-img-container d-flex align-items-center justify-content-center">
+          <div className="custom-border product-card-img-container d-flex align-items-center justify-content-center">
             <img
               className="px-4 product-card-img img-fluid"
               src={product.images.main}
