@@ -1,9 +1,25 @@
 @use "./colors" as c;
 
 // Test guidelines
-// * {
-//   outline: 2px solid blue;
-// }
+* {
+  // Avoid text selection
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  // Prevent light blue background in autocompleted inputs
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+
+  // Guides
+  //   outline: 2px solid blue;
+}
 
 body {
   height: 100vh;
