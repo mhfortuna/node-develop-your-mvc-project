@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "b4bdc3a0-606f-4d58-a2ce-69fdbfe2f83e",
+		"name": "The Camera Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/products/612cbfa81ea73e22970e3794",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"products",
+								"612cbfa81ea73e22970e3794"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/products/612cbfa81ea73e22970e3794",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"products",
+								"612cbfa81ea73e22970e3794"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/products/611546e5f7f33525e941836d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"products",
+								"611546e5f7f33525e941836d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"images\": {\n        \"others\": [\n            \"https://m.media-amazon.com/images/I/81X7kvLtaRL._AC_SL1500_.jpg\",\n            \"https://m.media-amazon.com/images/I/41Lc7PPlw0L._AC_.jpg\",\n            \"https://m.media-amazon.com/images/I/81Sh9g7QSPL._AC_SL1500_.jpg\"\n        ],\n        \"main\": \"https://m.media-amazon.com/images/I/61ebZJOb0rL._AC_SX679_.jpg\"\n    },\n    \"price\": 899,\n    \"unitsInStock\": 22,\n    \"lens\": [\n        \"80\",\n        \"120\",\n        \"300\"\n    ],\n    \"title\": \"Sony Alpha 6400\",\n    \"description\": \"The next generation mirrorless camera with the world’s fastest Auto Focus\\n          The ILCE-6400 combines the compact size and light weight of a mirrorless camera with the fast performance and some advanced features of a pro-level model. Stills or movies, creative compositions or everyday selfies – whatever your style, you can now capture beautiful images on the go.\\n          Packaged with the 16-50mm Power Zoom Lens, the ILCE-6400 gives you the compact versatility to shoot your world your way – from candid street shots to close-up portraiture. Combined with the 180-degree flip screen on of the body, it’s also great for Vlogging & Selfies.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Get all employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/employees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/employees/612cc66dfd12d228079135ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"employees",
+								"612cc66dfd12d228079135ee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Mathi Fortuna\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/employees/611546e6f7f33525e941837e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"employees",
+								"611546e6f7f33525e941837e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/employees/611546e5f7f33525e941836d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"employees",
+								"611546e5f7f33525e941836d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"New User\",\n    \"email\": \"new@teamrocket.es\",\n    \"password\": \"1234\",\n    \"isAdmin\": true,\n    \"profileImage\": \"https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/employees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
