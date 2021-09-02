@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import withLayout from "../../../hoc/withLayout";
 import AddIcon from "../../../components/SVGIcons/AddIcon/AddIcon";
@@ -41,10 +42,14 @@ function EmployeeDashboard() {
     <>
       <div className="d-flex mb-5">
         <div className="mt-5 me-3">
-          <Button black>Employees</Button>
+          <Link to="/admin/dashboard/employees">
+            <Button black>Employees</Button>
+          </Link>
         </div>
         <div className="mt-5 me-3">
-          <Button transparent>Products</Button>
+          <Link to="/admin/dashboard/products">
+            <Button transparent>Products</Button>
+          </Link>
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../api";
 import Button from "../../../components/Button/Button";
 import ProductDashListing from "../../../components/ProductsDashListing/ProductDashListing";
@@ -37,10 +38,14 @@ function ProductsDashboard() {
     <>
       <div className="d-flex mb-5">
         <div className="mt-5 me-3">
-          <Button transparent>Users</Button>
+          <Link to="/admin/dashboard/employees">
+            <Button transparent>Employees</Button>
+          </Link>
         </div>
         <div className="mt-5 me-3">
-          <Button black>Products</Button>
+          <Link to="/admin/dashboard/products">
+            <Button black>Products</Button>
+          </Link>
         </div>
       </div>
 
