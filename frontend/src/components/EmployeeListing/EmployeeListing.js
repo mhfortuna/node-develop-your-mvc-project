@@ -2,19 +2,14 @@ import React from "react";
 
 import EmployeeRow from "../EmployeeRow";
 
-export default function EmployeeListing({
-  employees,
-  // ...props
-}) {
+export default function EmployeeListing({ handleRemoved, employees }) {
   return (
     <>
       {employees.map((employee) => (
         <EmployeeRow
-          key={employee.email}
-          image={employee.profileImage}
-          name={employee.fullName}
-          email={employee.email}
-          role={employee.isAdmin}
+          key={employee._id}
+          employee={employee}
+          handleRemoved={handleRemoved}
         />
       ))}
     </>
