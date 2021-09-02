@@ -17,7 +17,7 @@ function withLayout(WrappedComponent) {
   function WrapperComponent({ ...props }) {
     return (
       <>
-        <Header pageTitle="The Camera Project" isLogged />
+        <Header pageTitle="The Camera Project" isLogged cartItems />
         <Main>
           <WrappedComponent {...props} />
         </Main>
