@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
 import withLayout from "../../../hoc/withLayout";
 
@@ -24,36 +25,52 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
-                <FloatInput
-                  id="email"
-                  type="text"
-                  label="Email"
-                  placeholder="email"
-                  // handleChange={handleChange}
-                />
 
-                <FloatInput
-                  id="password"
-                  type="password"
-                  label="Password"
-                  placeholder="Password"
-                  // handleChange={handleChange}
-                />
-                <FloatInput
-                  id="confirmPassword"
-                  type="password"
-                  label="Confirm Password"
-                  placeholder="Confirm Password"
-                  // handleChange={handleChange}
-                />
-                <FloatInput
-                  id="profileImage"
-                  type="text"
-                  label="Profile Image URL"
-                  placeholder="Profile Image URL"
-                  // handleChange={handleChange}
-                />
+                <div className="col col-6">
+                  <FloatInput
+                    id="email"
+                    type="text"
+                    label="Email"
+                    placeholder="email"
+                    // handleChange={handleChange}
+                  />
+                </div>
+
+                <div className="col col-6">
+                  <FloatInput
+                    id="password"
+                    type="password"
+                    label="Password"
+                    placeholder="Password"
+                    // handleChange={handleChange}
+                  />
+                </div>
+
+                <div className="col col-6">
+                  <FloatInput
+                    id="confirmPassword"
+                    type="password"
+                    label="Confirm Password"
+                    placeholder="Confirm Password"
+                    // handleChange={handleChange}
+                  />
+                </div>
+
+                <div className="col col-12">
+                  <FloatInput
+                    id="profileImage"
+                    type="text"
+                    label="Profile Image URL"
+                    placeholder="Profile Image URL"
+                    // handleChange={handleChange}
+                  />
+                </div>
               </div>
+            </div>
+            <div className="ms-auto col-4 big-mt px-5">
+              <Button black onClick={handleSubmit}>
+                Create Employee
+              </Button>
             </div>
           </form>
         </div>
