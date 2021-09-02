@@ -6,8 +6,29 @@ import CheckoutProductsList from "../../../components/CheckoutProductsList";
 import withLayout from "../../../hoc/withLayout";
 
 function Shipping() {
-  const [name, setName] = useState();
+  const [shippingState, setShippingState] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    country: "",
+  });
   const [phone, setPhone] = useState();
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const targetValue =
+      target.type === "checkbox" ? target.checked : target.value;
+    const targetName = target.id;
+
+    setShippingState({
+      ...shippingState,
+      [targetName]: targetValue,
+    });
+  };
 
   const handleChangePhone = (e) => {
     const { value, maxLength } = e.target;
@@ -26,10 +47,10 @@ function Shipping() {
     if (pattern.length > 2) {
       setPhone(pattern);
     }
-  };
-
-  const handleChangeName = (e) => {
-    setName(e.target.value);
+    setShippingState({
+      ...shippingState,
+      phoneNumber: phoneNumber.replace(/\s+/g, ""),
+    });
   };
 
   return (
@@ -45,9 +66,8 @@ function Shipping() {
                   type="text"
                   label="First Name"
                   placeholder="First name"
-                  value={name}
-                  handleChange={handleChangeName}
-                  handleBlur={handleChangeName}
+                  value={shippingState.firstName}
+                  handleChange={handleChange}
                 />
               </div>
               <div className="col col-6">
@@ -56,6 +76,8 @@ function Shipping() {
                   type="text"
                   label="Last name"
                   placeholder="Last Name"
+                  handleChange={handleChange}
+                  value={shippingState.lastName}
                 />
               </div>
 
@@ -76,6 +98,8 @@ function Shipping() {
                   type="email"
                   label="Email address"
                   placeholder="example@example.com"
+                  handleChange={handleChange}
+                  value={shippingState.email}
                 />
               </div>
 
@@ -85,6 +109,8 @@ function Shipping() {
                   type="address"
                   label="Address"
                   placeholder="address"
+                  handleChange={handleChange}
+                  value={shippingState.address}
                 />
               </div>
 
@@ -95,6 +121,8 @@ function Shipping() {
                   label="Zip code"
                   placeholder="zipCode"
                   maxLength={8}
+                  handleChange={handleChange}
+                  value={shippingState.zipCode}
                 />
               </div>
               <div className="col col-4">
@@ -103,6 +131,8 @@ function Shipping() {
                   type="text"
                   label="City"
                   placeholder="city"
+                  handleChange={handleChange}
+                  value={shippingState.city}
                 />
               </div>
               <div className="col col-4">
@@ -111,6 +141,8 @@ function Shipping() {
                   type="text"
                   label="Country"
                   placeholder="country"
+                  handleChange={handleChange}
+                  value={shippingState.country}
                 />
               </div>
             </div>
