@@ -1,9 +1,9 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 
-// import { CART_CONTEXT_KEY } from "../constants/local-storage-keys";
+import { CART_CONTEXT_KEY } from "../constants/local-storage-keys";
 
 const initialState = {
-  cartItems: [],
+  cartItems: JSON.parse(localStorage.getItem(CART_CONTEXT_KEY)) || [],
 };
 
 const CartContext = createContext(initialState);
@@ -17,16 +17,8 @@ function CartReducer(state, action) {
 
   switch (action.type) {
     case ADD_ITEM:
-      //   localStorage.setItem(
-      //     CART_CONTEXT_KEY,
-      //     JSON.stringify({ ...state, cartItems: [...cartItems, action.payload] }),
-      //   );
       return { ...state, cartItems: [...cartItems, action.payload] };
     case REMOVE_ITEM:
-      //   localStorage.setItem(
-      //     CART_CONTEXT_KEY,
-      //     JSON.stringify({ ...state, cartItems: [...cartItems, action.payload] }),
-      //   );
       return { ...state, cartItems: [...cartItems, action.payload] };
     case CLEAR_CART:
       return initialState;
@@ -37,6 +29,10 @@ function CartReducer(state, action) {
 
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem(CART_CONTEXT_KEY, JSON.stringify(state.cartItems));
+  }, [state]);
 
   function addItemContext(data) {
     dispatch({
