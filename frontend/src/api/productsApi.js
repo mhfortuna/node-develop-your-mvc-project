@@ -15,3 +15,7 @@ export function getAllProducts(api = makeProductsApi()) {
 export function getProduct(productId, api = makeProductsApi()) {
   return api.get(`/${productId}`);
 }
+
+export function removeProductById(productId, api = makeProductsApi()) {
+  return api.delete(`/${productId}`);
+}
