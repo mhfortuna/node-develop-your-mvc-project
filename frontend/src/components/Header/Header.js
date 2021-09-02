@@ -18,9 +18,8 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
   return (
     <header className="row m-0">
       <Link className="col col-8 p-0" to={PUBLIC.HOME}>
-        <div className="title font-bold">{pageTitle}</div>
+        <div className="col col-8 title p-0 mb-4 font-bold">{pageTitle}</div>
       </Link>
-
       {isLogged ? (
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
           <div className="user-name font-bold medium-text">Username</div>

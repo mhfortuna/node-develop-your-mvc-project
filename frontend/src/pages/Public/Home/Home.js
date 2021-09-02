@@ -38,7 +38,6 @@ function Home() {
           )}
           {loadStatus.isError && !loadStatus.isLoading && <h3>ERROR</h3>}
         </div>
-        <div className="col col-4 sidebar">Sidebar</div>
       </div>
     </div>
   );
