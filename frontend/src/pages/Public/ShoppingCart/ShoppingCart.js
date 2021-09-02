@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import { PUBLIC } from "../../../constants/routes";
 
 import ShoppingCartList from "../../../components/ShoppingCartList/ShoppingCartList";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
+import Button from "../../../components/Button";
 
 import CartContext from "../../../context/cart-context";
 
@@ -17,6 +21,11 @@ function ShoppingCart() {
       </div>
       <div className="col-4">
         <CheckoutProductsList />
+        <div className="col-12 mt-4 text-end">
+          <Link to={PUBLIC.SHIPPING}>
+            <Button black>Checkout</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
