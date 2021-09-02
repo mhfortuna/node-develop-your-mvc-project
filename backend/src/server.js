@@ -4,7 +4,12 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
 
-const { clientRouter, employeeRouter, productRouter } = require("./routes");
+const {
+  clientRouter,
+  employeeRouter,
+  productRouter,
+  orderRouter,
+} = require("./routes");
 
 const app = express();
 
@@ -13,15 +18,9 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
 
-// Main endpoints
-// app.get("/", (req, res) => {
-//   res.status(200).send({
-//     data: "hello-mundo",
-//   });
-// });
-
 app.use("/clients", clientRouter);
 app.use("/employees", employeeRouter);
 app.use("/products", productRouter);
+app.use("/orders", orderRouter);
 
 module.exports = app;
