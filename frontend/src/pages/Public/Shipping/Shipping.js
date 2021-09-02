@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
+import CheckoutContext from "../../../context/checkout-context";
+
+import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -17,6 +21,9 @@ function Shipping() {
     country: "",
   });
   const [phone, setPhone] = useState();
+
+  const { updateCheckoutContext } = useContext(CheckoutContext);
+  const history = useHistory();
 
   const handleChange = (event) => {
     const target = event.target;
@@ -53,11 +60,17 @@ function Shipping() {
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    updateCheckoutContext(shippingState);
+    history.push(PUBLIC.PAYMENT);
+  };
+
   return (
     <div className="row">
       <div className="col-8">
         <p className="big-text">Account information</p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="col-8">
             <div className="row">
               <div className="col col-6">
@@ -148,7 +161,9 @@ function Shipping() {
             </div>
           </div>
           <div className="ms-auto col-4 big-mt px-5">
-            <Button black>Payment method</Button>
+            <Button black onClick={handleSubmit}>
+              Payment method
+            </Button>
           </div>
         </form>
       </div>

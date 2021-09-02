@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
+import CheckoutContext from "../../../context/checkout-context";
+
+// import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
 function Summary() {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    address,
+    zipCode,
+    city,
+    country,
+  } = useContext(CheckoutContext);
   return (
     <>
       <div className="row col-10">
@@ -19,38 +33,38 @@ function Summary() {
             <div className="col-6">
               <div>
                 <p className="font-bold mb-0">First name</p>
-                <p>Joe</p>
+                <p>{firstName}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Last name</p>
-                <p>Joe</p>
+                <p>{lastName}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Phone</p>
-                <p>686 507 212</p>
+                <p>{phoneNumber}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">E-mail</p>
-                <p>ex@ex.com</p>
+                <p>{email}</p>
               </div>
             </div>
 
             <div className="col-4">
               <div>
                 <p className="font-bold mb-0">Address</p>
-                <p>Address</p>
+                <p>{address}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Zip code</p>
-                <p>Zip code</p>
+                <p>{zipCode}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">City</p>
-                <p>City</p>
+                <p>{city}</p>
               </div>
               <div>
-                <p className="font-bold mb-0">State</p>
-                <p>State</p>
+                <p className="font-bold mb-0">Country</p>
+                <p>{country}</p>
               </div>
             </div>
           </div>
@@ -66,7 +80,7 @@ function Summary() {
           <Button black>Payment method</Button>
         </div>
         <div className="ms-auto col-1 big-mt">
-          <Button black> Home</Button>
+          <Button black>Confirm</Button>
         </div>
       </div>
     </>
