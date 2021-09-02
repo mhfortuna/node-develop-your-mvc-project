@@ -3,18 +3,20 @@ import React, { createContext, useReducer } from "react";
 // import { CHECKOUT_CONTEXT_KEY } from "../constants/local-storage-keys";
 
 const initialState = {
-  name: "",
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
   email: "",
-  tel: "",
   address: "",
+  zipCode: "",
   city: "",
-  zip: "",
   country: "",
-  paymentMethod: "",
-  carholderName: "",
+  cardHolder: "",
   cardNumber: "",
-  cardExpiry: "",
-  cardCvv: "",
+  validMonth: "",
+  validYear: "",
+  cvc: "",
+  paymentMethod: "",
 };
 
 const CheckoutContext = createContext(initialState);
@@ -56,18 +58,20 @@ export const CheckoutContextProvider = ({ children }) => {
   return (
     <CheckoutContext.Provider
       value={{
-        name: state.name,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        phoneNumber: state.phoneNumber,
         email: state.email,
-        tel: state.tel,
         address: state.address,
+        zipCode: state.zipCode,
         city: state.city,
-        zip: state.zip,
         country: state.country,
-        paymentMethod: state.paymentMethod,
-        carholderName: state.carholderName,
+        cardHolder: state.cardHolder,
         cardNumber: state.cardNumber,
-        cardExpiry: state.cardExpiry,
-        cardCvv: state.cardCvv,
+        validMonth: state.validMonth,
+        validYear: state.validYear,
+        cvc: state.cvc,
+        paymentMethod: state.paymentMethod,
         updateCheckoutContext,
         clearCheckoutContext,
       }}

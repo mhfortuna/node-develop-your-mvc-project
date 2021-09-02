@@ -36,7 +36,7 @@ function CartReducer(state, action) {
       return { ...state, cartItems: [...cartItems] };
     }
     case CLEAR_CART:
-      return [];
+      return { cartItems: [] };
 
     default:
       return state;
