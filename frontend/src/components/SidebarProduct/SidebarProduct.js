@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../Button";
-import AddIcon from "../SVGIcons/AddIcon";
-import MinusCircleIcon from "../SVGIcons/MinusCircleIcon";
+import QuantityWrapper from "../QuantityWrapper";
 
 import CartContext from "../../context/cart-context";
 
@@ -13,15 +12,25 @@ import "./SidebarProduct.scss";
 export default function SidebarProduct({ product }) {
   const [quantity, setQuantity] = useState(1);
 
-  useEffect(() => {
-    setQuantity(1);
-  });
+  useEffect(() => {}, [quantity]);
 
   const { addItemContext } = useContext(CartContext);
 
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleMinusQuantity = () => {
+    if (quantity !== 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddQuantity = () => {
+    if (quantity !== product.unitsInStock) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCart = () => {
     addItemContext({ ...product, quantity });
     history.push(PUBLIC.SHOPPING_CART);
   };
@@ -32,11 +41,11 @@ export default function SidebarProduct({ product }) {
       <div className="product-nums">
         <div className="product-quantity">
           <div className="product-subtitle font-bold">Quantity</div>
-          <p className="product-number font-regular d-flex align-items-center">
-            <MinusCircleIcon />
-            <span className="mx-2">{quantity}</span>
-            <AddIcon />
-          </p>
+          <QuantityWrapper
+            quantity={quantity}
+            handleMinusQuantity={handleMinusQuantity}
+            handleAddQuantity={handleAddQuantity}
+          />
         </div>
         <div className="product-price d-inline">
           <div className="product-subtitle font-bold">Price</div>
@@ -49,7 +58,7 @@ export default function SidebarProduct({ product }) {
         {product.description}
       </div>
       <div className="button-wrapper ms-auto w-25">
-        <Button handleClick={handleClick} black>
+        <Button handleClick={handleAddToCart} black>
           Add to cart
         </Button>
       </div>

@@ -5,7 +5,7 @@ export default function CheckoutProduct({ checkoutProduct }) {
     <>
       <div className="col-6 mb-4">
         <img
-          className="h-100 product-card-img img-fluid"
+          className="h-100 product-card-img img-fluid multiply-blend-mode"
           src={checkoutProduct.images.main}
           alt={checkoutProduct.title}
         />
