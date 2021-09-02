@@ -45,7 +45,7 @@ function Product() {
               src={productData.images.main}
               alt={`Main ${productData.title}`}
             />
-            <div className="row g-4 mt-1 other-images">
+            <div className="row g-4 mt-1 mb-5 other-images">
               {productData.images.others.map((otherImg) => {
                 return (
                   <div key={otherImg} className="col col-6 other-image-wrapper">
