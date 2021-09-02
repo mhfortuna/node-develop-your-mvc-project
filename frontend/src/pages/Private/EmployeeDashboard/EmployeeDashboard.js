@@ -8,53 +8,7 @@ import EmployeeListing from "../../../components/EmployeeListing";
 import Button from "../../../components/Button";
 
 function EmployeeDashboard() {
-  const employees = [
-    {
-      fullName: "Mathias Fortuna",
-      email: "mathias@teamrocket.es",
-      // Password: 123
-      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-      isAdmin: true,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-    },
-    {
-      fullName: "Nacho Montoya",
-      email: "nacho@teamrocket.es",
-      // Password: 123
-      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-      isAdmin: false,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-    },
-    {
-      fullName: "Ricard Garcia",
-      email: "rick@teamrocket.es",
-      // Password: 123
-      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-      isAdmin: false,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-    },
-    {
-      fullName: "Hugo Gomez",
-      email: "huguito@teamrocket.es",
-      // Password: 123
-      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-      isAdmin: false,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-    },
-    {
-      fullName: "Brahim Benalia",
-      email: "brahim@teamrocket.es",
-      // Password: 123
-      password: "$2b$10$GVOAlSA4v6h8wteprLFsQuaM9FptKB/DW0L83wGnbClichSY9HP9a",
-      isAdmin: false,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
-    },
-  ];
+  const employees = [];
 
   return (
     <>
@@ -68,32 +22,38 @@ function EmployeeDashboard() {
       </div>
 
       <div className="table-responsive">
-        <table className="table backgroundDark">
-          <thead>
-            <tr>
-              <th scope="col" className="white text-center font-semi-bold">
-                Profile Image URL
-              </th>
-              <th scope="col" className="white text-center font-semi-bold">
-                User Name
-              </th>
-              <th scope="col" className="white text-center font-semi-bold">
-                Email
-              </th>
-              <th scope="col" className="white text-center font-semi-bold">
-                Role
-              </th>
-              <th scope="col" className="white text-center">
-                <DashButton white>
-                  <AddIcon />
-                </DashButton>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <EmployeeListing employees={employees} />
-          </tbody>
-        </table>
+        {employees.length > 0 ? (
+          <table className="table backgroundDark">
+            <thead>
+              <tr>
+                <th scope="col" className="white text-center font-semi-bold">
+                  Profile Image URL
+                </th>
+                <th scope="col" className="white text-center font-semi-bold">
+                  User Name
+                </th>
+                <th scope="col" className="white text-center font-semi-bold">
+                  Email
+                </th>
+                <th scope="col" className="white text-center font-semi-bold">
+                  Role
+                </th>
+                <th scope="col" className="white text-center">
+                  <DashButton white>
+                    <AddIcon />
+                  </DashButton>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <EmployeeListing employees={employees} />
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="w-100 text-center border border-2 p-2">
+            No employees found
+          </h1>
+        )}
       </div>
     </>
   );
