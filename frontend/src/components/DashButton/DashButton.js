@@ -3,7 +3,13 @@ import cn from "clsx";
 
 import "./DashButton.scss";
 
-function DashButton({ children, white = false, dark = false, ...props }) {
+function DashButton({
+  children,
+  white = false,
+  dark = false,
+  handleClick,
+  ...props
+}) {
   const classes = cn({
     customDashBtn: true,
     white: white,
@@ -11,7 +17,7 @@ function DashButton({ children, white = false, dark = false, ...props }) {
   });
 
   return (
-    <button type="button" className={classes} {...props}>
+    <button type="button" className={classes} onClick={handleClick} {...props}>
       {children}
     </button>
   );

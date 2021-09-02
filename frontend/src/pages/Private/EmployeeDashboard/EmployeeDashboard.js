@@ -26,6 +26,13 @@ function EmployeeDashboard() {
     }
   }
 
+  const handleRemoved = (id) => {
+    const newEmployeeData = employeesData.filter(
+      (employee) => employee._id !== id,
+    );
+    setEmployeesData(newEmployeeData);
+  };
+
   useEffect(() => {
     loadAllEmployees();
   }, []);
@@ -66,7 +73,10 @@ function EmployeeDashboard() {
               </tr>
             </thead>
             <tbody>
-              <EmployeeListing employees={employeesData} />
+              <EmployeeListing
+                employees={employeesData}
+                handleRemoved={handleRemoved}
+              />
             </tbody>
           </table>
         )}
