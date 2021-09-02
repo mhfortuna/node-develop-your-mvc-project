@@ -1,3 +1,5 @@
+@use "./colors" as c;
+
 // Test guidelines
 // * {
 //   outline: 2px solid blue;
@@ -21,4 +23,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .multiply-blend-mode {
   mix-blend-mode: multiply;
+}
+
+.custom-border {
+  border-radius: 5px;
+  border: 1px solid c.$backgroundLight;
 }

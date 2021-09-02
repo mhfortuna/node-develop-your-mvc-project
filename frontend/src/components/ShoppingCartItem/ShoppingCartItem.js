@@ -35,11 +35,11 @@ export default function ShoppingCartItem({ product }) {
 
   return (
     <div className="row mb-3 p-2">
-      <div className="col-3 d-flex align-items-center justify-content-center">
+      <div className="col-4 d-flex justify-content-center">
         <img
           src={product.images.main}
           alt={product.title}
-          className="img-fluid p-2"
+          className="img-fluid custom-border shopping-cart-image"
         />
       </div>
       <div className="col">
@@ -57,7 +57,7 @@ export default function ShoppingCartItem({ product }) {
       <div className="col">
         <button
           type="button"
-          className="transparent-button mt-2"
+          className="transparent-button mt-1"
           onClick={handleRemoveItem}
         >
           <CrossIcon size={24} />
