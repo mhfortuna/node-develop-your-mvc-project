@@ -10,6 +10,7 @@ const CartContext = createContext(initialState);
 
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
+const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 const CLEAR_CART = "CLEAR_CART";
 
 function CartReducer(state, action) {
@@ -18,10 +19,25 @@ function CartReducer(state, action) {
   switch (action.type) {
     case ADD_ITEM:
       return { ...state, cartItems: [...cartItems, action.payload] };
-    case REMOVE_ITEM:
-      return { ...state, cartItems: [...cartItems, action.payload] };
+
+    case REMOVE_ITEM: {
+      const updatedCart = cartItems.filter(
+        (item) => item._id !== action.payload,
+      );
+
+      return { ...state, cartItems: updatedCart };
+    }
+    case UPDATE_QUANTITY: {
+      const foundIndex = cartItems.findIndex(
+        (x) => x._id === action.payload._id,
+      );
+      cartItems[foundIndex] = action.payload;
+
+      return { ...state, cartItems: [...cartItems] };
+    }
     case CLEAR_CART:
-      return initialState;
+      return [];
+
     default:
       return state;
   }
@@ -41,9 +57,16 @@ export const CartContextProvider = ({ children }) => {
     });
   }
 
-  function removeItemContext(data) {
+  function removeItemContext(productId) {
     dispatch({
       type: "REMOVE_ITEM",
+      payload: productId,
+    });
+  }
+
+  function updateQuantityContext(data) {
+    dispatch({
+      type: "UPDATE_QUANTITY",
       payload: data,
     });
   }
@@ -60,6 +83,7 @@ export const CartContextProvider = ({ children }) => {
         cartItems: state.cartItems,
         addItemContext,
         removeItemContext,
+        updateQuantityContext,
         clearCartContext,
       }}
     >
