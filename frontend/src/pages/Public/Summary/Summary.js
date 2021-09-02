@@ -7,6 +7,7 @@ import CheckoutContext from "../../../context/checkout-context";
 import CartContext from "../../../context/cart-context";
 
 import { PUBLIC } from "../../../constants/routes";
+import { postOrder } from "../../../api";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -23,16 +24,39 @@ function Summary() {
     clearCheckoutContext,
   } = useContext(CheckoutContext);
 
-  const { clearCartContext } = useContext(CartContext);
+  const { cartItems, clearCartContext } = useContext(CartContext);
   const history = useHistory();
+  const order = {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    address,
+    zipCode,
+    city,
+    country,
+    products: cartItems,
+  };
+  async function addOrder(_order) {
+    try {
+      const { id } = await postOrder(_order);
+      console.log(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     // TODO: send order to backend
+    addOrder(order);
+
     clearCheckoutContext();
     clearCartContext();
     history.push(PUBLIC.HOME);
   };
+
   return (
     <>
       <div className="row col-10">

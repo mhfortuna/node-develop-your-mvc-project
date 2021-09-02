@@ -19,12 +19,12 @@ export default function CheckoutProduct({ checkoutProduct }) {
         <div className="row d-flex flex-column justify-content-between">
           <div className="row">
             <div className="col-12 d-flex">
-              <p className="font-bold">Quantity</p>
-              <p className="mx-1">{checkoutProduct.quantity}</p>
+              <p className="font-bold m-0">Quantity</p>
+              <p className="mx-1 mb-0">{checkoutProduct.quantity}</p>
             </div>
             <div className="col-12 d-flex pt-n5">
-              <p className="font-bold">Lens</p>
-              <p className="mx-1">{checkoutProduct.lens[0]}</p>
+              <p className="font-bold m-0">Lens</p>
+              <p className="mx-1 mb-0">{checkoutProduct.lens[0]}</p>
             </div>
           </div>
           <div className="row">
