@@ -25,7 +25,7 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
           <div className="user-name font-bold medium-text">Username</div>
           {IsCartItems ? (
-            <>
+            <Link to={PUBLIC.SHOPPING_CART}>
               <div className="ms-3">
                 <Button transparent>
                   <CartIcon />
@@ -40,7 +40,7 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
                   </div>
                 )}
               </div>
-            </>
+            </Link>
           ) : (
             <div className="ms-3">
               <Button transparent disabled>
