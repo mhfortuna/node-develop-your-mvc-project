@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import withLayout from "../../../hoc/withLayout";
 import AddIcon from "../../../components/SVGIcons/AddIcon/AddIcon";
 import DashButton from "../../../components/DashButton/DashButton";
 import EmployeeListing from "../../../components/EmployeeListing";
 
+import { getAllEmployees } from "../../../api";
+
 import Button from "../../../components/Button";
 
 function EmployeeDashboard() {
-  const employees = [];
+  const [employeesData, setEmployeesData] = useState([]);
+  const [loadStatus, setLoadStatus] = useState({
+    isError: false,
+    isLoading: true,
+  });
+
+  async function loadAllEmployees() {
+    try {
+      const { data } = await getAllEmployees();
+      setEmployeesData(data.foundEmployees);
+      setLoadStatus({ isError: false, isLoading: false });
+    } catch (error) {
+      setLoadStatus({ isError: true, isLoading: false, error: error });
+    }
+  }
+
+  useEffect(() => {
+    loadAllEmployees();
+  }, []);
 
   return (
     <>
       <div className="d-flex mb-5">
         <div className="mt-5 me-3">
-          <Button black>Users</Button>
+          <Button black>Employees</Button>
         </div>
         <div className="mt-5 me-3">
           <Button transparent>Products</Button>
@@ -22,7 +42,7 @@ function EmployeeDashboard() {
       </div>
 
       <div className="table-responsive">
-        {employees.length > 0 ? (
+        {!loadStatus.isLoading && !loadStatus.isError && (
           <table className="table backgroundDark">
             <thead>
               <tr>
@@ -46,14 +66,14 @@ function EmployeeDashboard() {
               </tr>
             </thead>
             <tbody>
-              <EmployeeListing employees={employees} />
+              <EmployeeListing employees={employeesData} />
             </tbody>
           </table>
-        ) : (
-          <h1 className="w-100 text-center border border-2 p-2">
-            No employees found
-          </h1>
         )}
+        {loadStatus.isLoading && !loadStatus.isError && (
+          <h3>Currently loading...</h3>
+        )}
+        {loadStatus.isError && !loadStatus.isLoading && <h3>ERROR</h3>}
       </div>
     </>
   );
