@@ -15,7 +15,3 @@ export function getAllEmployees(api = makeEmployeesApi()) {
 export function removeEmployeeById(employeeId, api = makeEmployeesApi()) {
   return api.delete(`/${employeeId}`);
 }
-
-// export function getProduct(productId, api = makeProductsApi()) {
-//   return api.get(`/${productId}`);
-// }

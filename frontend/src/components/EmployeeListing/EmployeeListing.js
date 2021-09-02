@@ -2,11 +2,7 @@ import React from "react";
 
 import EmployeeRow from "../EmployeeRow";
 
-export default function EmployeeListing({
-  handleRemoved,
-  employees,
-  // ...props
-}) {
+export default function EmployeeListing({ handleRemoved, employees }) {
   return (
     <>
       {employees.map((employee) => (

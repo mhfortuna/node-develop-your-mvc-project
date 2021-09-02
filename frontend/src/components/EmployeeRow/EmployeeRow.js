@@ -5,13 +5,14 @@ import EditIcon from "../SVGIcons/EditIcon";
 import RemoveIcon from "../SVGIcons/RemoveIcon";
 
 function EmployeeRow({ employee, handleRemoved }) {
+  const handleError = () => {};
+
   const removeEmployee = async () => {
-    console.log(`boton click on ${employee._id}`);
     try {
       await removeEmployeeById(employee._id);
       handleRemoved(employee._id);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 
