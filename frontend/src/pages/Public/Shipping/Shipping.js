@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
@@ -22,8 +22,32 @@ function Shipping() {
   });
   const [phone, setPhone] = useState();
 
-  const { updateCheckoutContext } = useContext(CheckoutContext);
+  const {
+    updateCheckoutContext,
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    address,
+    zipCode,
+    city,
+    country,
+  } = useContext(CheckoutContext);
+
   const history = useHistory();
+
+  useEffect(() => {
+    setShippingState({
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+      address: address,
+      zipCode: zipCode,
+      city: city,
+      country: country,
+    });
+  }, []);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -39,16 +63,14 @@ function Shipping() {
 
   const handleChangePhone = (e) => {
     const { value, maxLength } = e.target;
-    const phoneNumber = value.slice(0, maxLength);
+    const pNumber = value.slice(0, maxLength);
 
     if (e.nativeEvent.inputType === "deleteContentBackward") {
-      setPhone(phoneNumber);
+      setPhone(pNumber);
       return;
     }
 
-    const x = phoneNumber
-      .replace(/\D/g, "")
-      .match(/(\d{0,3})(\d{0,3})(\d{0,3})/);
+    const x = pNumber.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,3})/);
     const pattern = `${x[1] ?? x[1]} ${x[2] ?? x[2]} ${x[3] ?? x[3]}`;
 
     if (pattern.length > 2) {
@@ -56,7 +78,7 @@ function Shipping() {
     }
     setShippingState({
       ...shippingState,
-      phoneNumber: phoneNumber.replace(/\s+/g, ""),
+      phoneNumber: pNumber.replace(/\s+/g, ""),
     });
   };
 
