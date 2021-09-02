@@ -3,18 +3,15 @@ const { Schema } = require("mongoose");
 
 const orderSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: [true, "First name is required"],
-    },
+    firstName: { type: String },
     lastName: { type: String },
     phoneNumber: { type: String },
-    email: { type: String, required: [true, "Email is required"] },
+    email: { type: String },
     address: { type: String },
     zipCode: { type: String },
     city: { type: String },
     country: { type: String },
-    products: { type: Map },
+    products: { type: Array },
     orderTotal: {
       type: Number,
     },
