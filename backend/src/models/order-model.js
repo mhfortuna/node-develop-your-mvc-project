@@ -3,22 +3,6 @@ const { Schema } = require("mongoose");
 
 const orderSchema = new Schema(
   {
-    // client_id: {
-    //   type: mongoose.SchemaTypes.ObjectId,
-    //   ref: "client",
-    //   required: [true, "client id is required"],
-    // },
-    // products: {
-    //   type: [
-    //     {
-    //       type: mongoose.SchemaTypes.ObjectId,
-    //       ref: "product",
-    //       required: [true, "At least one product is required"],
-    //     },
-    //   ],
-    //   required: [true, "Products is required"],
-    // },
-    // price: { type: Number },
     firstName: {
       type: String,
       required: [true, "First name is required"],
@@ -31,6 +15,9 @@ const orderSchema = new Schema(
     city: { type: String },
     country: { type: String },
     products: { type: Map },
+    orderTotal: {
+      type: Number,
+    },
   },
 
   {

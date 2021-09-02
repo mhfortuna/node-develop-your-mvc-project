@@ -18,13 +18,6 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
 
-// Main endpoints
-// app.get("/", (req, res) => {
-//   res.status(200).send({
-//     data: "hello-mundo",
-//   });
-// });
-
 app.use("/clients", clientRouter);
 app.use("/employees", employeeRouter);
 app.use("/products", productRouter);
