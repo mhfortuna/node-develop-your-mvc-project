@@ -20,7 +20,7 @@ export default function CheckoutProductsList() {
         {cartItems.map((checkoutProduct) => (
           <CheckoutProduct
             checkoutProduct={checkoutProduct}
-            key={checkoutProduct._id.$oid}
+            key={checkoutProduct._id}
           />
         ))}
       </div>

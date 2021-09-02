@@ -1,28 +1,36 @@
 import React, { useContext, useState, useEffect } from "react";
+import CrossIcon from "../SVGIcons/CrossIcon";
 import QuantityWrapper from "../QuantityWrapper";
 
 import CartContext from "../../context/cart-context";
+import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({ product }) {
-  const { updateQuantityContext } = useContext(CartContext);
+  const { updateQuantityContext, removeItemContext } = useContext(CartContext);
   const [quantity, setQuantity] = useState(product.quantity);
 
   useEffect(() => {}, [quantity]);
 
   const handleMinusQuantity = () => {
     if (quantity !== 1) {
-      setQuantity(quantity - 1);
-      const updatedProduct = { ...product, quantity };
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      const updatedProduct = { ...product, quantity: newQuantity };
       updateQuantityContext(updatedProduct);
     }
   };
 
   const handleAddQuantity = () => {
     if (quantity !== product.unitsInStock) {
-      setQuantity(quantity + 1);
-      const updatedProduct = { ...product, quantity };
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      const updatedProduct = { ...product, quantity: newQuantity };
       updateQuantityContext(updatedProduct);
     }
+  };
+
+  const handleRemoveItem = () => {
+    removeItemContext(product._id);
   };
 
   return (
@@ -42,8 +50,18 @@ export default function ShoppingCartItem({ product }) {
           handleMinusQuantity={handleMinusQuantity}
           handleAddQuantity={handleAddQuantity}
         />
-        <p className="fs-5 font-bold mb-0">Total</p>
-        <p className="fs-5">${product.quantity * product.price}</p>
+        <p className="fs-5 font-bold mb-0">Price</p>
+        <p className="fs-5">${product.price}</p>
+      </div>
+
+      <div className="col">
+        <button
+          type="button"
+          className="transparent-button mt-2"
+          onClick={handleRemoveItem}
+        >
+          <CrossIcon size={24} />
+        </button>
       </div>
     </div>
   );
