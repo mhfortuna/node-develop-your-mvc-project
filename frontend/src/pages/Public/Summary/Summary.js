@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
 import CheckoutContext from "../../../context/checkout-context";
+import CartContext from "../../../context/cart-context";
 
-// import { PUBLIC } from "../../../constants/routes";
+import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -18,7 +20,19 @@ function Summary() {
     zipCode,
     city,
     country,
+    clearCheckoutContext,
   } = useContext(CheckoutContext);
+
+  const { clearCartContext } = useContext(CartContext);
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // TODO: send order to backend
+    clearCheckoutContext();
+    clearCartContext();
+    history.push(PUBLIC.HOME);
+  };
   return (
     <>
       <div className="row col-10">
@@ -77,10 +91,14 @@ function Summary() {
 
       <div className="row mt-5">
         <div className="col-2 big-mt">
-          <Button black>Payment method</Button>
+          <Link to={PUBLIC.PAYMENT}>
+            <Button black>Payment method</Button>
+          </Link>
         </div>
         <div className="ms-auto col-1 big-mt">
-          <Button black>Confirm</Button>
+          <Button onClick={handleSubmit} black>
+            Confirm
+          </Button>
         </div>
       </div>
     </>

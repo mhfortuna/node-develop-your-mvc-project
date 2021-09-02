@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
@@ -20,6 +20,7 @@ function Payment() {
   });
 
   const { updateCheckoutContext } = useContext(CheckoutContext);
+
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -135,7 +136,9 @@ function Payment() {
 
           <div className="d-flex col-12 big-mt">
             <div className="col-2 mt-5">
-              <Button black>Shipping details</Button>
+              <Link to={PUBLIC.SHIPPING}>
+                <Button black>Shipping details</Button>
+              </Link>
             </div>
             <div className="ms-auto col-2 mt-5 big-mt">
               <Button black onClick={handleSubmit}>
