@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
+import CheckoutContext from "../../../context/checkout-context";
+import CartContext from "../../../context/cart-context";
+
+import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
 function Summary() {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    address,
+    zipCode,
+    city,
+    country,
+    clearCheckoutContext,
+  } = useContext(CheckoutContext);
+
+  const { clearCartContext } = useContext(CartContext);
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // TODO: send order to backend
+    clearCheckoutContext();
+    clearCartContext();
+    history.push(PUBLIC.HOME);
+  };
   return (
     <>
       <div className="row col-10">
@@ -19,38 +47,38 @@ function Summary() {
             <div className="col-6">
               <div>
                 <p className="font-bold mb-0">First name</p>
-                <p>Joe</p>
+                <p>{firstName}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Last name</p>
-                <p>Joe</p>
+                <p>{lastName}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Phone</p>
-                <p>686 507 212</p>
+                <p>{phoneNumber}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">E-mail</p>
-                <p>ex@ex.com</p>
+                <p>{email}</p>
               </div>
             </div>
 
             <div className="col-4">
               <div>
                 <p className="font-bold mb-0">Address</p>
-                <p>Address</p>
+                <p>{address}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">Zip code</p>
-                <p>Zip code</p>
+                <p>{zipCode}</p>
               </div>
               <div>
                 <p className="font-bold mb-0">City</p>
-                <p>City</p>
+                <p>{city}</p>
               </div>
               <div>
-                <p className="font-bold mb-0">State</p>
-                <p>State</p>
+                <p className="font-bold mb-0">Country</p>
+                <p>{country}</p>
               </div>
             </div>
           </div>
@@ -63,10 +91,14 @@ function Summary() {
 
       <div className="row mt-5">
         <div className="col-2 big-mt">
-          <Button black>Payment method</Button>
+          <Link to={PUBLIC.PAYMENT}>
+            <Button black>Payment method</Button>
+          </Link>
         </div>
         <div className="ms-auto col-1 big-mt">
-          <Button black> Home</Button>
+          <Button onClick={handleSubmit} black>
+            Confirm
+          </Button>
         </div>
       </div>
     </>
