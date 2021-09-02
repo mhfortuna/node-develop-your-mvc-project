@@ -18,10 +18,17 @@ function CartReducer(state, action) {
   switch (action.type) {
     case ADD_ITEM:
       return { ...state, cartItems: [...cartItems, action.payload] };
-    case REMOVE_ITEM:
-      return { ...state, cartItems: [...cartItems, action.payload] };
+
+    case REMOVE_ITEM: {
+      const updatedCart = cartItems.filter(
+        (item) => item.id !== action.payload,
+      );
+      return { ...state, cartItems: updatedCart };
+    }
+
     case CLEAR_CART:
-      return initialState;
+      return [];
+
     default:
       return state;
   }
@@ -41,10 +48,10 @@ export const CartContextProvider = ({ children }) => {
     });
   }
 
-  function removeItemContext(data) {
+  function removeItemContext(productId) {
     dispatch({
       type: "REMOVE_ITEM",
-      payload: data,
+      payload: productId,
     });
   }
 
