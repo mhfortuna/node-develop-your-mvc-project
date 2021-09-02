@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
+
+import CartContext from "../context/cart-context";
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
@@ -15,9 +17,20 @@ function withLayout(WrappedComponent) {
   )})`;
 
   function WrapperComponent({ ...props }) {
+    const { cartItems } = useContext(CartContext);
+    let IsCartItems = false;
+
+    if (cartItems.length > 0) {
+      IsCartItems = true;
+    }
+
     return (
       <>
-        <Header pageTitle="The Camera Project" isLogged cartItems />
+        <Header
+          pageTitle="The Camera Project"
+          isLogged
+          IsCartItems={IsCartItems}
+        />
         <Main>
           <WrappedComponent {...props} />
         </Main>
