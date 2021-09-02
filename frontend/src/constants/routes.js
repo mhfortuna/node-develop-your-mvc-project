@@ -18,6 +18,7 @@ export const PUBLIC = {
 export const PRIVATE = {
   ADMIN_SIGNIN: "/admin",
   DASHBOARD_USERS: "/admin/dashboard/employees",
+  NEW_EMPLOYEE: "/admin/dashboard/employees/new-employee",
   DASHBOARD_PRODUCTS: "/admin/dashboard/products",
 };
 

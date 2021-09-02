@@ -18,12 +18,16 @@ import Payment from "./pages/Public/Payment/Payment";
 
 import "./sass/main.scss";
 import Summary from "./pages/Public/Summary/Summary";
+import AddEmployee from "./pages/Private/AddEmployee";
 
 function App() {
   return (
     <CartContextProvider>
       <BrowserRouter>
         <Switch>
+          <Route path={PRIVATE.NEW_EMPLOYEE}>
+            <AddEmployee />
+          </Route>
           <Route path={PRIVATE.DASHBOARD_PRODUCTS}>
             <ProductsDashboard />
           </Route>
