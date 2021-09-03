@@ -9,7 +9,11 @@ const {
 const clientRouter = Router();
 
 // Sign in
-clientRouter.post("/signin/", clientController.signIn);
+clientRouter.post("/signin/", authFirebaseMiddleware, clientController.signIn);
+// public
+
+// Sign in
+clientRouter.post("/signup/", authFirebaseMiddleware, clientController.signUp);
 // public
 
 // GET client

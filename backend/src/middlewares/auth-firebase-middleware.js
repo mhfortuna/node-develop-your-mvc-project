@@ -10,17 +10,19 @@ async function authFirebaseMiddleware(req, res, next) {
       email: clientClaims.email,
     });
 
-    if (!client) {
+    if (!client && req.url !== "/signup") {
       throw new Error("Invalid token");
     }
 
     req.client = {
       email: clientClaims.email,
-      id: client._id,
+      uid: clientClaims.uid,
     };
 
     next();
   } catch (error) {
+    console.log("error");
+    console.log(error);
     res.status(401).send({
       data: null,
       error: error,

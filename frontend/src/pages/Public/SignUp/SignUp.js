@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom";
 
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
@@ -9,8 +10,15 @@ import signUpSchema from "./sign-up-schema";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 
-import { syncUserData } from "../../../utils/auth-request";
-import { signUpWithEmailAndPassword } from "../../../services/auth";
+import AuthContext from "../../../context/auth-context";
+
+import { sendUserData } from "../../../utils/auth-request";
+import {
+  signUpWithEmailAndPassword,
+  getCurrentUserToken,
+} from "../../../services/auth";
+
+import { PUBLIC } from "../../../constants/routes";
 
 import "./SignUp.scss";
 
@@ -18,6 +26,10 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const { login } = useContext(AuthContext);
+
+  const history = useHistory();
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +40,6 @@ export default function SignUp() {
     validationSchema: signUpSchema,
     onSubmit: async (signUpState) => {
       // updateCheckoutContext(shippingState);
-      // history.push(PUBLIC.PAYMENT);
 
       setLoading(true);
       setLoggedIn(false);
@@ -38,7 +49,11 @@ export default function SignUp() {
           signUpState.email,
           signUpState.password,
         );
-        await syncUserData();
+        await sendUserData(signUpState.firstName);
+        const token = await getCurrentUserToken();
+        login({ email: signUpState.email, token: token });
+        history.push(PUBLIC.HOME);
+
         setLoggedIn(true);
       } catch (error) {
         setLoginError(error.message);

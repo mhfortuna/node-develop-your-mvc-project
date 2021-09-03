@@ -30,5 +30,6 @@ export const API = {
   EMPLOYEES_SIGN_IN: "/employees/signin",
   CLIENTS: "/clients",
   CLIENTS_SIGN_IN: "/clients/signin",
+  CLIENTS_SIGN_UP: "/clients/signup",
   ORDERS: "/orders",
 };

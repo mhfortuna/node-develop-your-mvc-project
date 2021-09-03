@@ -9,7 +9,7 @@ admin.initializeApp({
 const auth = admin.auth();
 
 function verifyAuthToken(token) {
-  return auth.verifyAuthToken(token);
+  return auth.verifyIdToken(token);
 }
 
 module.exports = {
