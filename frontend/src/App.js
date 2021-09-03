@@ -19,6 +19,7 @@ import Payment from "./pages/Public/Payment/Payment";
 import "./sass/main.scss";
 import Summary from "./pages/Public/Summary/Summary";
 import AddEmployee from "./pages/Private/AddEmployee";
+import AddProduct from "./pages/Private/AddProduct/AddProduct";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         <Switch>
           <Route path={PRIVATE.NEW_EMPLOYEE}>
             <AddEmployee />
+          </Route>
+          <Route path={PRIVATE.NEW_PRODUCT}>
+            <AddProduct />
           </Route>
           <Route path={PRIVATE.DASHBOARD_PRODUCTS}>
             <ProductsDashboard />

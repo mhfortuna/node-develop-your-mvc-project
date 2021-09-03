@@ -8,6 +8,10 @@ export function makeEmployeesApi() {
   });
 }
 
+export function postEmployee(data, api = makeEmployeesApi()) {
+  return api.post(``, data);
+}
+
 export function getAllEmployees(api = makeEmployeesApi()) {
   return api.get(``);
 }

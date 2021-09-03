@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../api";
 import Button from "../../../components/Button/Button";
+import DashButton from "../../../components/DashButton/DashButton";
+import AddIcon from "../../../components/SVGIcons/AddIcon";
 import ProductDashListing from "../../../components/ProductsDashListing/ProductDashListing";
+import { PRIVATE } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -100,7 +103,11 @@ function ProductsDashboard() {
                   scope="col"
                   className="customDark text-center font-semi-bold"
                 >
-                  Edit
+                  <Link to={PRIVATE.NEW_PRODUCT}>
+                    <DashButton dark>
+                      <AddIcon />
+                    </DashButton>
+                  </Link>
                 </th>
               </tr>
             </thead>
