@@ -19,6 +19,7 @@ import Payment from "./pages/Public/Payment/Payment";
 
 import "./sass/main.scss";
 import Summary from "./pages/Public/Summary/Summary";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -38,22 +39,22 @@ function App() {
                 <Summary />
               </CheckoutContextProvider>
             </Route>
-            <Route path={PUBLIC.PAYMENT}>
+            <PrivateRoute path={PUBLIC.PAYMENT}>
               <CheckoutContextProvider>
                 <Payment />
               </CheckoutContextProvider>
-            </Route>
-            <Route path={PUBLIC.SHIPPING}>
+            </PrivateRoute>
+            <PrivateRoute path={PUBLIC.SHIPPING}>
               <CheckoutContextProvider>
                 <Shipping />
               </CheckoutContextProvider>
-            </Route>
+            </PrivateRoute>
             <Route path={PUBLIC.SHOPPING_CART}>
               <ShoppingCart />
             </Route>
-            <Route path={PUBLIC.USER_INFO}>
+            <PrivateRoute path={PUBLIC.USER_INFO}>
               <UserInfo />
-            </Route>
+            </PrivateRoute>
             <Route path={PUBLIC.SIGNIN}>
               <SignIn />
             </Route>

@@ -59,6 +59,7 @@ export function AuthContextProvider({ children }) {
     <AuthContext.Provider
       value={{
         user: authState.user,
+        isAuthenticated: authState.isAuthenticated,
         login: login,
         logout: logout,
       }}
