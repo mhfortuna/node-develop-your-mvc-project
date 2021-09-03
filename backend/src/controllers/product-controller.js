@@ -68,10 +68,31 @@ async function add(req, res, next) {
   }
 }
 
+// POST product
+async function syncUnitsInStock(req, res, next) {
+  try {
+    const { title, images, description, price, unitsInStock, lens } = req.body;
+    const addedProduct = await db.Product.create({
+      title: title,
+      images: images,
+      description: description,
+      price: price,
+      unitsInStock: unitsInStock,
+      lens: lens,
+    });
+    res
+      .status(200)
+      .send({ message: "Successfully added", id: addedProduct._id });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+}
+
 module.exports = {
   getById: getById,
   updateById: updateById,
   deleteById: deleteById,
   getAll: getAll,
   add: add,
+  syncUnitsInStock: syncUnitsInStock,
 };
