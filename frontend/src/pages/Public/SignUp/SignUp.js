@@ -19,8 +19,8 @@ export default function SignUp() {
               <FloatInput
                 id="FirstInput"
                 type="text"
-                label="Full Name"
-                placeholder="Full Name"
+                label="First Name"
+                placeholder="First Name"
               />
             </div>
             <div className="row m-3">

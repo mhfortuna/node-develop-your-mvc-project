@@ -1,7 +1,7 @@
 const { getAuthToken, verifyAuthToken } = require("../services/firebase");
 const db = require("../models");
 
-async function authMiddleware(req, res, next) {
+async function authFirebaseMiddleware(req, res, next) {
   try {
     const bearerToken = await getAuthToken(req.headers);
     const clientClaims = await verifyAuthToken(bearerToken); // returns client email
@@ -29,5 +29,5 @@ async function authMiddleware(req, res, next) {
 }
 
 module.exports = {
-  authMiddleware: authMiddleware,
+  authFirebaseMiddleware: authFirebaseMiddleware,
 };
