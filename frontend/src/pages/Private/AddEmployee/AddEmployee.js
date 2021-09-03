@@ -25,7 +25,6 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
-
                 <div className="col col-6">
                   <FloatInput
                     id="email"
@@ -35,7 +34,6 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
-
                 <div className="col col-6">
                   <FloatInput
                     id="password"
@@ -45,7 +43,6 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
-
                 <div className="col col-6">
                   <FloatInput
                     id="confirmPassword"
@@ -55,8 +52,7 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
-
-                <div className="col col-12">
+                <div className="col col-8">
                   <FloatInput
                     id="profileImage"
                     type="text"
@@ -65,7 +61,18 @@ function AddEmployee({ type = "Create New Employee" }) {
                     // handleChange={handleChange}
                   />
                 </div>
+                //TODO this must be a button to select admin or employee from
+                <div className="col col-4">
+                  <FloatInput
+                    id="isAdmin"
+                    type="text"
+                    label="Role"
+                    placeholder="Role"
+                    // handleChange={handleChange}
+                  />
+                </div>
               </div>
+              //TODO Create the "back" button
             </div>
             <div className="ms-auto col-4 big-mt px-5">
               <Button black onClick={handleSubmit}>
