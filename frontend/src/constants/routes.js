@@ -9,6 +9,7 @@ export const PUBLIC = {
   SUMMARY: "/checkout/summary",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
+  SIGNOUT: "/signout",
   USER_INFO: "/user",
   USER_EDIT: "/user/edit",
 };
