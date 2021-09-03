@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Button from "../Button";
 import QuantityWrapper from "../QuantityWrapper";
 
@@ -57,10 +57,19 @@ export default function SidebarProduct({ product }) {
       <div className="product-description description-text">
         {product.description}
       </div>
-      <div className="button-wrapper ms-auto w-25">
-        <Button handleClick={handleAddToCart} black>
-          Add to cart
-        </Button>
+      <div className="col col-12 d-flex justify-content-between">
+        <div className="col col-3 button-wrapper w-25">
+          <Link to={PUBLIC.HOME}>
+            <Button fullWidth black>
+              Back
+            </Button>
+          </Link>
+        </div>
+        <div className="col col-3 button-wrapper w-25">
+          <Button handleClick={handleAddToCart} black>
+            Add to cart
+          </Button>
+        </div>
       </div>
     </div>
   );
