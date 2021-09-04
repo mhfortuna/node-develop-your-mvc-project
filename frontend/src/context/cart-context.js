@@ -17,8 +17,26 @@ function CartReducer(state, action) {
   const { cartItems } = state;
 
   switch (action.type) {
-    case ADD_ITEM:
+    case ADD_ITEM: {
+      const { _id: productId, quantity } = action.payload;
+      const prevCartItem = cartItems.find((item) => item._id === productId);
+
+      if (prevCartItem) {
+        const modifiedCartItems = cartItems.map((item) => {
+          if (item._id === productId) {
+            return {
+              ...item,
+              quantity: item.quantity + quantity,
+            };
+          }
+          return item;
+        });
+
+        return { ...state, cartItems: modifiedCartItems };
+      }
+
       return { ...state, cartItems: [...cartItems, action.payload] };
+    }
 
     case REMOVE_ITEM: {
       const updatedCart = cartItems.filter(
