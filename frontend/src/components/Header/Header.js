@@ -46,7 +46,7 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
           </div>
           {IsCartItems ? (
             <Link to={PUBLIC.SHOPPING_CART}>
-              <div className="ms-3">
+              <div className="mx-3">
                 <Button transparent>
                   <CartIcon />
                 </Button>
