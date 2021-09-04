@@ -16,6 +16,10 @@ export function getAllEmployees(api = makeEmployeesApi()) {
   return api.get(``);
 }
 
+export function getEmployeeById(employeeId, api = makeEmployeesApi()) {
+  return api.get(`/${employeeId}`);
+}
+
 export function removeEmployeeById(employeeId, api = makeEmployeesApi()) {
   return api.delete(`/${employeeId}`);
 }

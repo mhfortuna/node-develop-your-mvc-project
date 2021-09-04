@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import { postEmployee } from "../../../api/employeesApi";
+// import { postEmployee } from "../../../api/employeesApi";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
 import { PRIVATE } from "../../../constants/routes";
@@ -9,12 +9,33 @@ import withLayout from "../../../hoc/withLayout";
 
 import addEmployeeSchema from "../AddEmployee/addEmployee-schema";
 
-function EditEmployee({ type = "Create New Employee" }) {
+import { getEmployeeById } from "../../../api";
+
+function EditEmployee({ type = "Edit Employee" }) {
   const { employeeId } = useRouteMatch(
     `${PRIVATE.EDIT_EMPLOYEE}/:employeeId`,
   ).params;
-  console.log(employeeId);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [employee, setEmployee] = useState({});
+  // const [loadStatus, setLoadStatus] = useState({
+  //   isError: false,
+  //   isLoading: true,
+  // });
+  // const
+  async function loadEmployee() {
+    try {
+      const { data } = await getEmployeeById(employeeId);
+      setEmployee(data.foundEmployee);
+      // setLoadStatus({ isError: false, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      // setLoadStatus({ isError: true, isLoading: false, error: error });
+    }
+  }
+
+  useEffect(() => {
+    loadEmployee();
+  }, []);
 
   const handleSetRole = (event) => {
     if (event.target.innerHTML === "Employee") {
@@ -23,28 +44,21 @@ function EditEmployee({ type = "Create New Employee" }) {
       setIsAdmin(true);
     }
   };
-
-  async function addEmployee(data) {
-    try {
-      await postEmployee(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  console.log(employee.fullName);
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      email: "",
-      password: "",
-      isAdmin: isAdmin,
-      profileImage:
-        "https://screenfiction.org/content/image/0/59/405/d4aabcc6-full.webp",
+      fullName: employee.fullName,
+      email: employee.email,
+      password: employee.password,
+      isAdmin: employee.isAdmin,
+      profileImage: employee.profileImage,
     },
     validationSchema: addEmployeeSchema,
     onSubmit: (addEmployeeState) => {
       const newEmployee = { ...addEmployeeState, isAdmin: isAdmin };
-      addEmployee(newEmployee);
+      console.log(newEmployee);
+      // addEmployee(newEmployee);
     },
   });
 
