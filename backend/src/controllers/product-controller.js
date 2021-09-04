@@ -8,6 +8,7 @@ async function getById(req, res, next) {
     res.status(200).send({ foundProduct: foundProduct });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 
@@ -24,6 +25,7 @@ async function updateById(req, res, next) {
     });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 
@@ -31,10 +33,11 @@ async function updateById(req, res, next) {
 async function deleteById(req, res, next) {
   try {
     const { id } = req.params;
-    const deletedProduct = await db.Product.findByIdAndDelete(id);
+    await db.Product.findByIdAndDelete(id);
     res.status(200).send({ message: "Successfully deleted", id: id });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 
@@ -45,6 +48,7 @@ async function getAll(req, res, next) {
     res.status(200).send({ foundProducts: foundProducts });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 
@@ -65,26 +69,29 @@ async function add(req, res, next) {
       .send({ message: "Successfully added", id: addedProduct._id });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 
-// POST product
-async function syncUnitsInStock(req, res, next) {
+// Sync product quantity
+async function syncUnitsInStock(item) {
   try {
-    const { title, images, description, price, unitsInStock, lens } = req.body;
-    const addedProduct = await db.Product.create({
-      title: title,
-      images: images,
-      description: description,
-      price: price,
-      unitsInStock: unitsInStock,
-      lens: lens,
-    });
-    res
-      .status(200)
-      .send({ message: "Successfully added", id: addedProduct._id });
+    const foundProduct = await db.Product.findById(item._id).lean();
+
+    if (foundProduct.unitsInStock > item.quantity) {
+      const newUnitsInStock = foundProduct.unitsInStock - item.quantity;
+
+      const updatedItem = await db.Product.findByIdAndUpdate(
+        foundProduct._id,
+        { unitsInStock: newUnitsInStock },
+        {
+          new: true,
+        },
+      );
+      return updatedItem;
+    }
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    throw new Error(error);
   }
 }
 
