@@ -8,6 +8,10 @@ export function makeProductsApi() {
   });
 }
 
+export function postProduct(data, api = makeProductsApi()) {
+  return api.post(``, data);
+}
+
 export function getAllProducts(api = makeProductsApi()) {
   return api.get(``);
 }

@@ -10,10 +10,9 @@ employeeRouter.post("/signin/", employeeController.signIn);
 
 // GET employee
 employeeRouter.get("/:id", employeeController.getById);
-// JWT
 
 // PATCH employee
-employeeRouter.patch("/:id", employeeController.updateById);
+employeeRouter.post("/:id", employeeController.updateById);
 // JWT
 
 // DELETE employee

@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { removeEmployeeById } from "../../api";
+import { PRIVATE } from "../../constants/routes";
 import DashButton from "../DashButton/DashButton";
 import EditIcon from "../SVGIcons/EditIcon";
 import RemoveIcon from "../SVGIcons/RemoveIcon";
@@ -31,9 +33,11 @@ function EmployeeRow({ employee, handleRemoved }) {
         {employee.isAdmin ? "Admin" : "Employee"}
       </td>
       <td className="text-center flex-grow-1">
-        <DashButton white>
-          <EditIcon />
-        </DashButton>
+        <Link to={`${PRIVATE.EDIT_EMPLOYEE}/${employee._id}`}>
+          <DashButton white>
+            <EditIcon />
+          </DashButton>
+        </Link>
         <DashButton white handleClick={removeEmployee}>
           <RemoveIcon />
         </DashButton>

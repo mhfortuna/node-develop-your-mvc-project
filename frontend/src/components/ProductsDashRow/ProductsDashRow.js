@@ -18,17 +18,17 @@ function ProductsDashRow({ product, handleRemoved }) {
 
   return (
     <tr className="align-center w-100">
-      <td className="customDark text-center font-light flex-grow-1">
+      <td className="customDark text-center font-regular flex-grow-1">
         {product._id}
       </td>
-      <td className="customDark text-center font-light flex-grow-1">
+      <td className="customDark text-center font-regular flex-grow-1">
         {product.title}
       </td>
-      <td className="customDark text-center font-light flex-grow-1 truncate">
+      <td className="customDark text-center font-regular flex-grow-1 truncate">
         {product.description}
       </td>
 
-      <td className="customDark text-center font-light flex-grow-1">
+      <td className="customDark text-center font-regular flex-grow-1">
         <div className="d-flex justify-content-center">
           {product.lens.map((art) => (
             <p key={art} className="me-1">
@@ -37,13 +37,13 @@ function ProductsDashRow({ product, handleRemoved }) {
           ))}
         </div>
       </td>
-      <td className="customDark text-center font-light flex-grow-1 truncate">
+      <td className="customDark text-center font-regular flex-grow-1 truncate">
         {product.images.main}
       </td>
-      <td className="customDark text-center font-light flex-grow-1">
+      <td className="customDark text-center font-regular flex-grow-1">
         {product.price}
       </td>
-      <td className="customDark text-center font-light flex-grow-1">
+      <td className="customDark text-center font-regular flex-grow-1">
         {product.unitsInStock}
       </td>
       <td className="customDark text-center flex-grow-1">

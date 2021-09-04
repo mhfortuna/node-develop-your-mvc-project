@@ -9,6 +9,7 @@ import EmployeeListing from "../../../components/EmployeeListing";
 import { getAllEmployees } from "../../../api";
 
 import Button from "../../../components/Button";
+import { PRIVATE } from "../../../constants/routes";
 
 function EmployeeDashboard() {
   const [employeesData, setEmployeesData] = useState([]);
@@ -42,12 +43,12 @@ function EmployeeDashboard() {
     <>
       <div className="d-flex mb-5">
         <div className="mt-5 me-3">
-          <Link to="/admin/dashboard/employees">
+          <Link to={PRIVATE.DASHBOARD_USERS}>
             <Button black>Employees</Button>
           </Link>
         </div>
         <div className="mt-5 me-3">
-          <Link to="/admin/dashboard/products">
+          <Link to={PRIVATE.DASHBOARD_PRODUCTS}>
             <Button transparent>Products</Button>
           </Link>
         </div>
@@ -71,9 +72,11 @@ function EmployeeDashboard() {
                   Role
                 </th>
                 <th scope="col" className="white text-center">
-                  <DashButton white>
-                    <AddIcon />
-                  </DashButton>
+                  <Link to={PRIVATE.NEW_EMPLOYEE}>
+                    <DashButton white>
+                      <AddIcon />
+                    </DashButton>
+                  </Link>
                 </th>
               </tr>
             </thead>
