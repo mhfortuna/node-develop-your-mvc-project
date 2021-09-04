@@ -26,12 +26,19 @@ async function getById(req, res, next) {
 async function updateById(req, res, next) {
   try {
     const { id } = req.params;
-    const updatedEmployee = await db.Employee.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const { fullName, email, isAdmin } = req.body.employee;
+    const data = await db.Employee.findByIdAndUpdate(
+      id,
+      {
+        fullName: fullName,
+        email: email,
+        isAdmin: isAdmin,
+      },
+      { new: true },
+    );
     res.status(200).send({
       message: "Successfully updated",
-      updatedEmployee: updatedEmployee,
+      data: data,
     });
   } catch (error) {
     res.status(500).send({ error: error.message });

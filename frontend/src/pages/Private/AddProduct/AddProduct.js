@@ -111,7 +111,6 @@ function AddProduct({ type = "Create New Product" }) {
                     hasErrorMessage={formik.touched.description}
                   />
                 </div>
-
                 <div className="col col-12">
                   <FloatInput
                     id="mainImage"
