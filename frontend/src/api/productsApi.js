@@ -23,3 +23,7 @@ export function getProduct(productId, api = makeProductsApi()) {
 export function removeProductById(productId, api = makeProductsApi()) {
   return api.delete(`/${productId}`);
 }
+
+export function editProduct(productId, api = makeProductsApi()) {
+  return api.post(`/${productId}`);
+}

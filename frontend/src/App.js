@@ -19,8 +19,9 @@ import Payment from "./pages/Public/Payment/Payment";
 import "./sass/main.scss";
 import Summary from "./pages/Public/Summary/Summary";
 import AddEmployee from "./pages/Private/AddEmployee";
-import AddProduct from "./pages/Private/AddProduct/AddProduct";
+import AddProduct from "./pages/Private/AddProduct";
 import EditEmployee from "./pages/Private/EdtiEmployee/EditEmployee";
+import EditProduct from "./pages/Private/EditProduct";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path={PRIVATE.NEW_EMPLOYEE}>
             <AddEmployee />
+          </Route>
+          <Route path={PRIVATE.EDIT_PRODUCT}>
+            <EditProduct />
           </Route>
           <Route path={PRIVATE.NEW_PRODUCT}>
             <AddProduct />

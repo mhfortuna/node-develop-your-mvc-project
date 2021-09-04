@@ -7,7 +7,7 @@ const productRouter = Router();
 // GET product
 productRouter.get("/:id", productController.getById);
 // PATCH product
-productRouter.patch("/:id", productController.updateById);
+productRouter.post("/:id", productController.updateById);
 // DELETE product
 productRouter.delete("/:id", productController.deleteById);
 
