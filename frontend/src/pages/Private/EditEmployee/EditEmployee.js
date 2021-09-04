@@ -16,26 +16,12 @@ function EditEmployee({ type = "Edit Employee" }) {
     `${PRIVATE.EDIT_EMPLOYEE}/:employeeId`,
   ).params;
   const [isAdmin, setIsAdmin] = useState(false);
-  const [employee, setEmployee] = useState({});
-  // const [loadStatus, setLoadStatus] = useState({
-  //   isError: false,
-  //   isLoading: true,
-  // });
+  // const [employee, setEmployee] = useState({});
+  const [loadStatus, setLoadStatus] = useState({
+    isError: false,
+    isLoading: true,
+  });
   // const
-  async function loadEmployee() {
-    try {
-      const { data } = await getEmployeeById(employeeId);
-      setEmployee(data.foundEmployee);
-      // setLoadStatus({ isError: false, isLoading: false });
-    } catch (error) {
-      console.log(error);
-      // setLoadStatus({ isError: true, isLoading: false, error: error });
-    }
-  }
-
-  useEffect(() => {
-    loadEmployee();
-  }, []);
 
   const handleSetRole = (event) => {
     if (event.target.innerHTML === "Employee") {
@@ -44,15 +30,14 @@ function EditEmployee({ type = "Edit Employee" }) {
       setIsAdmin(true);
     }
   };
-  console.log(employee.fullName);
 
   const formik = useFormik({
     initialValues: {
-      fullName: employee.fullName,
-      email: employee.email,
-      password: employee.password,
-      isAdmin: employee.isAdmin,
-      profileImage: employee.profileImage,
+      fullName: "",
+      email: "",
+      password: "",
+      isAdmin: "",
+      profileImage: "",
     },
     validationSchema: addEmployeeSchema,
     onSubmit: (addEmployeeState) => {
@@ -62,102 +47,131 @@ function EditEmployee({ type = "Edit Employee" }) {
     },
   });
 
+  async function loadEmployee() {
+    try {
+      const { data } = await getEmployeeById(employeeId);
+      formik.setValues({
+        fullName: data.foundEmployee.fullName,
+        email: data.foundEmployee.email,
+        password: data.foundEmployee.password,
+        isAdmin: data.foundEmployee.isAdmin,
+        profileImage: data.foundEmployee.profileImage,
+      });
+      setIsAdmin(data.foundEmployee.isAdmin);
+      setLoadStatus({ isError: false, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      setLoadStatus({ isError: true, isLoading: false, error: error });
+    }
+  }
+
+  useEffect(() => {
+    loadEmployee();
+  }, []);
+
   return (
     <>
       <div className="row">
         <div className="col-8">
           <p className="big-text">{type}</p>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="col-8">
-              <div className="row">
-                <div className="col col-12">
-                  <FloatInput
-                    id="fullName"
-                    type="text"
-                    label="Full Name"
-                    placeholder="Full name"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.fullName}
-                    errorMessage={formik.errors.fullName}
-                    hasErrorMessage={formik.touched.fullName}
-                  />
-                </div>
-                <div className="col col-12">
-                  <FloatInput
-                    id="email"
-                    type="text"
-                    label="Email"
-                    placeholder="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                    errorMessage={formik.errors.email}
-                    hasErrorMessage={formik.touched.email}
-                  />
-                </div>
-                <div className="col col-12">
-                  <FloatInput
-                    id="password"
-                    type="password"
-                    label="Password"
-                    placeholder="Password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                    errorMessage={formik.errors.password}
-                    hasErrorMessage={formik.touched.password}
-                  />
-                </div>
-                <div className="col col-12">
-                  <FloatInput
-                    id="profileImage"
-                    type="text"
-                    label="Profile Image URL"
-                    placeholder="Profile Image URL"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.profileImage}
-                    errorMessage={formik.errors.profileImage}
-                    hasErrorMessage={formik.touched.profileImage}
-                  />
-                </div>
 
-                <div className="col-6 mt-3">
-                  <Button
-                    black={isAdmin === false}
-                    fullWidth
-                    transparent={isAdmin === true}
-                    onClick={handleSetRole}
-                  >
-                    Employee
+          {!loadStatus.isLoading && !loadStatus.isError && (
+            <form onSubmit={formik.handleSubmit}>
+              <div className="col-8">
+                <div className="row">
+                  <div className="col col-12">
+                    <FloatInput
+                      id="fullName"
+                      type="text"
+                      label="Full Name"
+                      placeholder="Full name"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.fullName}
+                      errorMessage={formik.errors.fullName}
+                      hasErrorMessage={formik.touched.fullName}
+                    />
+                  </div>
+                  <div className="col col-12">
+                    <FloatInput
+                      id="email"
+                      type="text"
+                      label="Email"
+                      placeholder="email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
+                      errorMessage={formik.errors.email}
+                      hasErrorMessage={formik.touched.email}
+                    />
+                  </div>
+                  <div className="col col-12">
+                    <FloatInput
+                      id="password"
+                      type="password"
+                      label="Password"
+                      placeholder="Password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.password}
+                      errorMessage={formik.errors.password}
+                      hasErrorMessage={formik.touched.password}
+                    />
+                  </div>
+                  <div className="col col-12">
+                    <FloatInput
+                      id="profileImage"
+                      type="text"
+                      label="Profile Image URL"
+                      placeholder="Profile Image URL"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.profileImage}
+                      errorMessage={formik.errors.profileImage}
+                      hasErrorMessage={formik.touched.profileImage}
+                    />
+                  </div>
+
+                  <div className="col-6 mt-3">
+                    <Button
+                      black={isAdmin === false}
+                      fullWidth
+                      transparent={isAdmin === true}
+                      onClick={handleSetRole}
+                    >
+                      Employee
+                    </Button>
+                  </div>
+                  <div className="col-6 mt-3">
+                    <Button
+                      black={isAdmin === true}
+                      fullWidth
+                      transparent={isAdmin === false}
+                      onClick={handleSetRole}
+                    >
+                      Admin
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <div className="col col-12 d-flex big-mt justify-content-between">
+                <div className="col col-3 button-wrapper w-25">
+                  <Link to={PRIVATE.DASHBOARD_USERS}>
+                    <Button black>Back</Button>
+                  </Link>
+                </div>
+                <div className="col col-3 button-wrapper w-25">
+                  <Button black submitButton>
+                    Edit Employee
                   </Button>
                 </div>
-                <div className="col-6 mt-3">
-                  <Button
-                    black={isAdmin === true}
-                    fullWidth
-                    transparent={isAdmin === false}
-                    onClick={handleSetRole}
-                  >
-                    Admin
-                  </Button>
-                </div>
               </div>
-            </div>
-            <div className="col col-12 d-flex big-mt justify-content-between">
-              <div className="col col-3 button-wrapper w-25">
-                <Link to={PRIVATE.DASHBOARD_USERS}>
-                  <Button black>Back</Button>
-                </Link>
-              </div>
-              <div className="col col-3 button-wrapper w-25">
-                <Button black submitButton>
-                  Create Employee
-                </Button>
-              </div>
-            </div>
-          </form>
+            </form>
+          )}
+          {loadStatus.isLoading && !loadStatus.isError && (
+            <h3>Currently loading...</h3>
+          )}
+          {loadStatus.isError && !loadStatus.isLoading && <h3>ERROR</h3>}
         </div>
       </div>
     </>
