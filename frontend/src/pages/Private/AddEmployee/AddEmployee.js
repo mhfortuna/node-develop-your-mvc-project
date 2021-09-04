@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postEmployee } from "../../../api/employeesApi";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
@@ -11,6 +11,8 @@ import addEmployeeSchema from "./addEmployee-schema";
 
 function AddEmployee({ type = "Create New Employee" }) {
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const history = useHistory();
 
   const handleSetRole = (event) => {
     if (event.target.innerHTML === "Employee") {
@@ -40,7 +42,9 @@ function AddEmployee({ type = "Create New Employee" }) {
     validationSchema: addEmployeeSchema,
     onSubmit: (addEmployeeState) => {
       const newEmployee = { ...addEmployeeState, isAdmin: isAdmin };
-      addEmployee(newEmployee);
+      addEmployee(newEmployee).then(() => {
+        history.push(`${PRIVATE.DASHBOARD_USERS}`);
+      });
     },
   });
 

@@ -9,8 +9,13 @@ employeeRouter.post("/signin/", employeeController.signIn);
 
 // GET employee
 employeeRouter.get("/:id", employeeController.getById);
+
 // PATCH employee
-employeeRouter.patch("/:id", employeeController.updateById);
+// employeeRouter.patch("/:id", employeeController.updateById);
+
+// PATCH employee
+employeeRouter.post("/:id", employeeController.updateById);
+
 // DELETE employee
 employeeRouter.delete("/:id", employeeController.deleteById);
 

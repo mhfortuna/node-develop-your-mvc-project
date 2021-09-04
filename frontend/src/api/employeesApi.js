@@ -19,3 +19,7 @@ export function getAllEmployees(api = makeEmployeesApi()) {
 export function removeEmployeeById(employeeId, api = makeEmployeesApi()) {
   return api.delete(`/${employeeId}`);
 }
+
+export function editEmployeeById(employeeId, api = makeEmployeesApi()) {
+  return api.post(`/${employeeId}`);
+}

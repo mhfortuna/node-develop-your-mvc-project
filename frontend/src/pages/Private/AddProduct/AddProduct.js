@@ -20,6 +20,9 @@ function AddProduct({ type = "Create New Product" }) {
     }
   }
 
+  // const makeStringIntoArray = (value, string) => {
+  // }
+
   const formik = useFormik({
     initialValues: {
       title: "",
