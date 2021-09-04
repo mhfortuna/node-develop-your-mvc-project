@@ -1,30 +1,45 @@
-const { employeeController } = require("../controllers");
+const { employeeController, jwtController } = require("../controllers");
+const {
+  checkJwtToken,
+  isAdmin,
+} = require("../middlewares/auth-jwt-middleware");
+
 const Router = require("express").Router;
 
 // Declaring router
 const employeeRouter = Router();
 
 // Sign in
-employeeRouter.post("/signin/", employeeController.signIn);
+employeeRouter.post("/signin/", jwtController.signIn);
 // public
 
 // GET employee
-employeeRouter.get("/:id", employeeController.getById);
+employeeRouter.get("/:id", checkJwtToken, isAdmin, employeeController.getById);
 
 // PATCH employee
-employeeRouter.post("/:id", employeeController.updateById);
+employeeRouter.post(
+  "/:id",
+  checkJwtToken,
+  isAdmin,
+  employeeController.updateById,
+);
 // JWT
 
 // DELETE employee
-employeeRouter.delete("/:id", employeeController.deleteById);
+employeeRouter.delete(
+  "/:id",
+  checkJwtToken,
+  isAdmin,
+  employeeController.deleteById,
+);
 // JWT
 
 // GET all
-employeeRouter.get("/", employeeController.getAll);
+employeeRouter.get("/", checkJwtToken, isAdmin, employeeController.getAll);
 // JWT
 
 // POST employee
-employeeRouter.post("/", employeeController.add);
+employeeRouter.post("/", checkJwtToken, isAdmin, employeeController.add);
 // JWT
 
 module.exports = {

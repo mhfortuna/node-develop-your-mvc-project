@@ -1,4 +1,6 @@
 const { productController } = require("../controllers");
+const { checkJwtToken } = require("../middlewares/auth-jwt-middleware");
+
 const Router = require("express").Router;
 
 // Declaring router
@@ -9,10 +11,10 @@ productRouter.get("/:id", productController.getById);
 // public
 
 // PATCH product
-productRouter.post("/:id", productController.updateById);
+productRouter.post("/:id", checkJwtToken, productController.updateById);
 
 // DELETE product
-productRouter.delete("/:id", productController.deleteById);
+productRouter.delete("/:id", checkJwtToken, productController.deleteById);
 // JWT
 
 // GET all
@@ -20,7 +22,7 @@ productRouter.get("/", productController.getAll);
 // public
 
 // POST product
-productRouter.post("/", productController.add);
+productRouter.post("/", checkJwtToken, productController.add);
 // JWT
 
 module.exports = {

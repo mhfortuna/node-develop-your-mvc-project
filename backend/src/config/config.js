@@ -24,6 +24,9 @@ const CONFIG = {
     encrypt: {
       salt: ENCRYPTION_SALT_PRODUCTION,
     },
+    jwt: {
+      SECRET: ACCESS_TOKEN_SECRET,
+    },
   },
   development: {
     app: {
@@ -35,6 +38,9 @@ const CONFIG = {
     encrypt: {
       salt: ENCRYPTION_SALT_DEVELOPMENT,
     },
+    jwt: {
+      SECRET: ACCESS_TOKEN_SECRET,
+    },
   },
   test: {
     app: {
@@ -42,6 +48,9 @@ const CONFIG = {
     },
     db: {
       url: MONGO_DB_URL_TEST,
+    },
+    jwt: {
+      SECRET: ACCESS_TOKEN_SECRET,
     },
   },
 };
