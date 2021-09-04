@@ -25,6 +25,7 @@ const clientSchema = new Schema(
   },
 
   {
+    strict: false,
     timestamps: true,
   },
 );

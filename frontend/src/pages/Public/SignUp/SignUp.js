@@ -54,7 +54,7 @@ export default function SignUp() {
         login({
           email: signUpState.email,
           token: token,
-          userId: data.data.userId._id,
+          userId: data.data.userId,
         });
         history.push(PUBLIC.HOME);
 

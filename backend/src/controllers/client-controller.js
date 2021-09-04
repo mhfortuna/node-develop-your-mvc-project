@@ -17,7 +17,6 @@ async function signIn(req, res) {
     //   { email: email },
     //   { password: 1, _id: 0 },
     // );
-
     res.status(200).send({ message: "Successfully signed in", userId: data });
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -58,8 +57,32 @@ async function getById(req, res) {
 async function updateById(req, res) {
   try {
     const { id } = req.params;
-    console.log(arguments.callee.toString());
-    res.status(200).send({ id: id });
+    const {
+      address,
+      city,
+      country,
+      email,
+      firstName,
+      lastName,
+      zipCode,
+      phoneNumber,
+    } = req.body.client;
+    const data = await db.Client.findByIdAndUpdate(
+      id,
+      {
+        address: address,
+        city: city,
+        country: country,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        zipCode: zipCode,
+        phoneNumber: phoneNumber,
+      },
+      { new: true },
+    );
+    console.log(data);
+    res.status(200).send({ id: id, message: "Success" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

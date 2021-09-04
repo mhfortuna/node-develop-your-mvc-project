@@ -20,6 +20,17 @@ export async function getClient(clientId, api = makeClientsApi()) {
   });
 }
 
+export async function updateClient(client, api = makeClientsApi()) {
+  const token = await getCurrentUserToken();
+  return api.post(
+    `/${client.id}`,
+    { client: client },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+}
+
 // export function removeProductById(productId, api = makeClientsApi()) {
 //   return api.delete(`/${productId}`);
 // }

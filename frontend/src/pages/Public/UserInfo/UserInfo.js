@@ -11,7 +11,7 @@ import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
-import { getClient } from "../../../api";
+import { getClient, updateClient } from "../../../api";
 
 function UserInfo() {
   const [phone, setPhone] = useState();
@@ -37,10 +37,8 @@ function UserInfo() {
     validationSchema: userSchema,
     enableReinitialize: true,
     onSubmit: (accountState) => {
-      // updateCheckoutContext(shippingState);
-      // history.push(PUBLIC.PAYMENT);
-      console.log(accountState);
-      console.log(history);
+      updateClient({ ...accountState, id: clientId });
+      history.push(PUBLIC.HOME);
     },
   });
 
@@ -54,9 +52,9 @@ function UserInfo() {
         email: data.data.email || "",
         firstName: data.data.firstName || "",
         lastName: data.data.lastName || "",
-        phoneNumber: data.data.phoneNumber || "",
         zipCode: data.data.zipCode || "",
       });
+      setPhone(data.data.phoneNumber || "");
       setLoadStatus({ isError: false, isLoading: false });
     } catch (error) {
       setLoadStatus({ isError: true, isLoading: false, error: error });
@@ -91,16 +89,9 @@ function UserInfo() {
     <>
       <div className="col-6">
         <p className="big-text">Account information</p>
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           <div className="row">
             <div className="col col-6">
-              {!loadStatus.isLoading && !loadStatus.isError && (
-                <h3>Data loaded</h3>
-              )}
-              {loadStatus.isLoading && !loadStatus.isError && (
-                <h3>Currently loading...</h3>
-              )}
-              {loadStatus.isError && !loadStatus.isLoading && <h3>ERROR</h3>}
               <FloatInput
                 id="firstName"
                 type="text"
@@ -111,6 +102,7 @@ function UserInfo() {
                 value={formik.values.firstName}
                 errorMessage={formik.errors.firstName}
                 hasErrorMessage={formik.touched.firstName}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
             <div className="col col-6">
@@ -124,6 +116,7 @@ function UserInfo() {
                 value={formik.values.lastName}
                 errorMessage={formik.errors.lastName}
                 hasErrorMessage={formik.touched.lastName}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
 
@@ -139,6 +132,7 @@ function UserInfo() {
                 onBlur={formik.handleBlur}
                 errorMessage={formik.errors.phoneNumber}
                 hasErrorMessage={formik.touched.phoneNumber}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
             <div className="col col-6">
@@ -152,6 +146,7 @@ function UserInfo() {
                 value={formik.values.email}
                 errorMessage={formik.errors.email}
                 hasErrorMessage={formik.touched.email}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
 
@@ -166,6 +161,7 @@ function UserInfo() {
                 value={formik.values.address}
                 errorMessage={formik.errors.address}
                 hasErrorMessage={formik.touched.address}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
 
@@ -181,6 +177,7 @@ function UserInfo() {
                 value={formik.values.zipCode}
                 errorMessage={formik.errors.zipCode}
                 hasErrorMessage={formik.touched.zipCode}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
             <div className="col col-4">
@@ -194,6 +191,7 @@ function UserInfo() {
                 value={formik.values.city}
                 errorMessage={formik.errors.city}
                 hasErrorMessage={formik.touched.city}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
             <div className="col col-4">
@@ -207,6 +205,7 @@ function UserInfo() {
                 value={formik.values.country}
                 errorMessage={formik.errors.country}
                 hasErrorMessage={formik.touched.country}
+                disabled={loadStatus.isLoading || loadStatus.isError}
               />
             </div>
           </div>
@@ -218,6 +217,10 @@ function UserInfo() {
               </Button>
             </div>
           </div>
+          {loadStatus.isLoading && !loadStatus.isError && (
+            <h3>Currently loading...</h3>
+          )}
+          {loadStatus.isError && !loadStatus.isLoading && <h3>ERROR</h3>}
         </form>
       </div>
     </>

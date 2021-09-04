@@ -41,7 +41,6 @@ export default function SignUp() {
           signInState.password,
         );
         const data = await syncUserData();
-        console.log(data);
         const token = await getCurrentUserToken();
         login({
           email: signInState.email,

@@ -20,13 +20,13 @@ clientRouter.post("/signup/", authFirebaseMiddleware, clientController.signUp);
 clientRouter.get("/:id", authFirebaseMiddleware, clientController.getById);
 // firebase
 
-// PATCH client
-clientRouter.patch("/:id", authFirebaseMiddleware, clientController.updateById);
-// firebase
-
 // POST client
 clientRouter.post("/", clientController.add);
 // public
+
+// PATCH client
+clientRouter.post("/:id", authFirebaseMiddleware, clientController.updateById);
+// firebase
 
 module.exports = {
   clientRouter: clientRouter,
