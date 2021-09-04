@@ -1,24 +1,21 @@
+/* eslint-disable no-console */
 import { useFormik } from "formik";
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { postProduct } from "../../../api";
+import React, { useEffect } from "react";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { getProduct, editProduct } from "../../../api";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
 import { PRIVATE } from "../../../constants/routes";
 import withLayout from "../../../hoc/withLayout";
 
-import addProductSchema from "./addProduct-schema";
+import editProductSchema from "./editProduct-schema";
 
-function AddProduct({ type = "Create New Product" }) {
+function EditProduct({ type = "Edit Product" }) {
   const history = useHistory();
 
-  async function addProduct(data) {
-    try {
-      await postProduct(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const { productId } = useRouteMatch(
+    `${PRIVATE.EDIT_PRODUCT}/:productId`,
+  ).params;
 
   const makeStringIntoArray = (originalString) => {
     if (originalString.includes(",")) {
@@ -37,32 +34,58 @@ function AddProduct({ type = "Create New Product" }) {
       lens: "",
       description: "",
     },
-    validationSchema: addProductSchema,
-    onSubmit: (addProductState) => {
+    validationSchema: editProductSchema,
+    onSubmit: (editProductState) => {
       // Building images object
       const imagesObject = {};
-      imagesObject.main = addProductState.mainImage;
-      imagesObject.others = makeStringIntoArray(addProductState.otherImages);
+      imagesObject.main = editProductState.mainImage;
+      imagesObject.others = makeStringIntoArray(editProductState.otherImages);
 
       // Building lens array
-      const lensArray = makeStringIntoArray(addProductState.lens);
+      const lensArray = makeStringIntoArray(editProductState.lens);
 
-      const newProduct = {
-        title: addProductState.title,
-        price: addProductState.price,
-        description: addProductState.description,
+      const editedProduct = {
+        id: productId,
+        title: editProductState.title,
+        price: editProductState.price,
+        description: editProductState.description,
         images: imagesObject,
         lens: lensArray,
-        unitsInStock: addProductState.unitsInStock,
+        unitsInStock: editProductState.unitsInStock,
       };
 
-      // console.log("New product --> ", newProduct);
-
-      addProduct(newProduct).then(() => {
-        history.push(`${PRIVATE.DASHBOARD_PRODUCTS}`);
-      });
+      editProduct(editedProduct)
+        .then(() => {
+          history.push(`${PRIVATE.DASHBOARD_PRODUCTS}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   });
+
+  async function loadProduct() {
+    try {
+      const { data } = await getProduct(productId);
+      const foundProduct = await data.foundProduct;
+
+      formik.setValues({
+        title: foundProduct.title,
+        mainImage: foundProduct.images.main,
+        otherImages: foundProduct.images.others.toString(),
+        price: foundProduct.price,
+        unitsInStock: foundProduct.unitsInStock,
+        lens: foundProduct.lens.toString(),
+        description: foundProduct.description,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    loadProduct();
+  }, []);
 
   return (
     <>
@@ -111,6 +134,7 @@ function AddProduct({ type = "Create New Product" }) {
                     hasErrorMessage={formik.touched.description}
                   />
                 </div>
+
                 <div className="col col-12">
                   <FloatInput
                     id="mainImage"
@@ -175,7 +199,7 @@ function AddProduct({ type = "Create New Product" }) {
               </div>
               <div className="col col-3 button-wrapper w-25">
                 <Button black submitButton>
-                  Create Product
+                  Edit Product
                 </Button>
               </div>
             </div>
@@ -186,4 +210,4 @@ function AddProduct({ type = "Create New Product" }) {
   );
 }
 
-export default withLayout(AddProduct);
+export default withLayout(EditProduct);

@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { removeProductById } from "../../api";
+import { PRIVATE } from "../../constants/routes";
 import DashButton from "../DashButton/DashButton";
 import EditIcon from "../SVGIcons/EditIcon";
 import RemoveIcon from "../SVGIcons/RemoveIcon";
@@ -47,9 +49,11 @@ function ProductsDashRow({ product, handleRemoved }) {
         {product.unitsInStock}
       </td>
       <td className="customDark text-center flex-grow-1">
-        <DashButton dark>
-          <EditIcon />
-        </DashButton>
+        <Link to={`${PRIVATE.EDIT_PRODUCT}/${product._id}`}>
+          <DashButton dark>
+            <EditIcon />
+          </DashButton>
+        </Link>
         <DashButton dark handleClick={removeProduct}>
           <RemoveIcon />
         </DashButton>
