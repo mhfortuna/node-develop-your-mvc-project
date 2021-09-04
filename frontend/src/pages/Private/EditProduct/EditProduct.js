@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
-import { getProduct } from "../../../api";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { getProduct, editProduct } from "../../../api";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
 import { PRIVATE } from "../../../constants/routes";
@@ -10,7 +11,7 @@ import withLayout from "../../../hoc/withLayout";
 import editProductSchema from "./editProduct-schema";
 
 function EditProduct({ type = "Edit Product" }) {
-  // const history = useHistory();
+  const history = useHistory();
 
   const { productId } = useRouteMatch(
     `${PRIVATE.EDIT_PRODUCT}/:productId`,
@@ -44,6 +45,7 @@ function EditProduct({ type = "Edit Product" }) {
       const lensArray = makeStringIntoArray(editProductState.lens);
 
       const editedProduct = {
+        id: productId,
         title: editProductState.title,
         price: editProductState.price,
         description: editProductState.description,
@@ -52,11 +54,13 @@ function EditProduct({ type = "Edit Product" }) {
         unitsInStock: editProductState.unitsInStock,
       };
 
-      console.log("Edited product --> ", editedProduct);
-
-      // addProduct(editedProduct).then(() => {
-      //   history.push(`${PRIVATE.DASHBOARD_PRODUCTS}`);
-      // });
+      editProduct(editedProduct)
+        .then(() => {
+          history.push(`${PRIVATE.DASHBOARD_PRODUCTS}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   });
 
@@ -74,20 +78,10 @@ function EditProduct({ type = "Edit Product" }) {
         lens: foundProduct.lens.toString(),
         description: foundProduct.description,
       });
-
-      console.log("Found product: ", foundProduct);
     } catch (error) {
       console.log(error);
     }
   }
-
-  // async function updateProduct(data) {
-  //   try {
-  //     await editProduct(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   useEffect(() => {
     loadProduct();
@@ -205,7 +199,7 @@ function EditProduct({ type = "Edit Product" }) {
               </div>
               <div className="col col-3 button-wrapper w-25">
                 <Button black submitButton>
-                  Create Product
+                  Edit Product
                 </Button>
               </div>
             </div>

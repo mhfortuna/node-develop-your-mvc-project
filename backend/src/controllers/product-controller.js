@@ -15,15 +15,29 @@ async function getById(req, res, next) {
 async function updateById(req, res, next) {
   try {
     const { id } = req.params;
-    const updatedProduct = await db.Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const editedProduct = req.body.product;
+    console.log("Received edited product --> ", editedProduct);
+    const updatedProduct = await db.Product.findByIdAndUpdate(
+      id,
+      {
+        title: editedProduct.title,
+        price: editedProduct.price,
+        description: editedProduct.description,
+        images: editedProduct.images,
+        lens: editedProduct.lens,
+        unitsInStock: editedProduct.unitsInStock,
+      },
+      {
+        new: true,
+      },
+    );
     res.status(200).send({
       message: "Successfully updated",
       updatedProduct: updatedProduct,
     });
   } catch (error) {
     res.status(500).send({ error: error.message });
+    next(error);
   }
 }
 

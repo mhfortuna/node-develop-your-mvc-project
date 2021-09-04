@@ -24,6 +24,6 @@ export function removeProductById(productId, api = makeProductsApi()) {
   return api.delete(`/${productId}`);
 }
 
-export function editProduct(productId, api = makeProductsApi()) {
-  return api.post(`/${productId}`);
+export function editProduct(product, api = makeProductsApi()) {
+  return api.post(`/${product.id}`, { product: product });
 }

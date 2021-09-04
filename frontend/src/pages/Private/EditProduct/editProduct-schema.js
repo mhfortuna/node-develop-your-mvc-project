@@ -1,6 +1,5 @@
 import * as Yup from "yup";
 
-// TODO make validation for the product. Down below is a copy from employees.
 const addProductSchema = Yup.object().shape({
   title: Yup.string()
     .required("The product name is required")
@@ -11,9 +10,7 @@ const addProductSchema = Yup.object().shape({
     .lessThan(99999, "Price should be less than $99.999"),
   description: Yup.string()
     .required("The description is required")
-    .min(10, "The description is too short!")
-    .max(500, "The description is too long!"),
-  // mainImage: Yup.string().url("This must be a valid link"),
+    .min(10, "The description is too short!"),
   mainImage: Yup.string()
     .required("A main image is required")
     .min(10, "The URL is too short!"),
