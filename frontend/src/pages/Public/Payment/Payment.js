@@ -1,51 +1,41 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useFormik } from "formik";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 import CheckoutProductsList from "../../../components/CheckoutProductsList";
 import CheckoutContext from "../../../context/checkout-context";
+
+import paymentSchema from "./payment-schema";
 
 import { PUBLIC } from "../../../constants/routes";
 
 import withLayout from "../../../hoc/withLayout";
 
 function Payment() {
-  const [paymentState, setPaymentState] = useState({
-    cardHolder: "",
-    cardNumber: "",
-    validMonth: "",
-    validYear: "",
-    cvc: "",
-    paymentMethod: "paypal",
-  });
+  const [paymentMethod, setPaymentMethod] = useState("paypal");
 
   const { updateCheckoutContext } = useContext(CheckoutContext);
 
   const history = useHistory();
 
-  const handleChange = (event) => {
-    const target = event.target;
-    const targetValue =
-      target.type === "checkbox" ? target.checked : target.value;
-    const targetName = target.id;
-
-    setPaymentState({
-      ...paymentState,
-      [targetName]: targetValue,
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      cardHolder: "",
+      cardNumber: "",
+      validMonth: "",
+      validYear: "",
+      cvc: "",
+    },
+    validationSchema: paymentSchema,
+    onSubmit: (paymentState) => {
+      updateCheckoutContext({ ...paymentState, paymentMethod: paymentMethod });
+      history.push(PUBLIC.SUMMARY);
+    },
+  });
 
   const handleMethodChange = (event) => {
-    setPaymentState({
-      ...paymentState,
-      paymentMethod: event.target.innerHTML.toLowerCase(),
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateCheckoutContext(paymentState);
-    history.push(PUBLIC.SUMMARY);
+    setPaymentMethod(event.target.innerHTML.toLowerCase());
   };
 
   return (
@@ -56,8 +46,8 @@ function Payment() {
         <div className="row col-10 m-0">
           <div className="col-6 mt-3">
             <Button
-              black={paymentState.paymentMethod === "paypal"}
-              transparent={paymentState.paymentMethod !== "paypal"}
+              black={paymentMethod === "paypal"}
+              transparent={paymentMethod !== "paypal"}
               fullWidth
               onClick={handleMethodChange}
             >
@@ -66,8 +56,8 @@ function Payment() {
           </div>
           <div className="col-6 mt-3">
             <Button
-              black={paymentState.paymentMethod === "card"}
-              transparent={paymentState.paymentMethod !== "card"}
+              black={paymentMethod === "card"}
+              transparent={paymentMethod !== "card"}
               fullWidth
               onClick={handleMethodChange}
             >
@@ -76,7 +66,7 @@ function Payment() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="col-10">
             <div className="row">
               <div className="col col-12">
@@ -85,8 +75,11 @@ function Payment() {
                   type="text"
                   label="Card holder"
                   placeholder="Card Holder"
-                  onChange={handleChange}
-                  value={paymentState.cardHolder}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.cardHolder}
+                  errorMessage={formik.errors.cardHolder}
+                  hasErrorMessage={formik.touched.cardHolder}
                 />
               </div>
               <div className="col col-12">
@@ -95,8 +88,11 @@ function Payment() {
                   type="text"
                   label="Card number"
                   placeholder="Card number"
-                  onChange={handleChange}
-                  value={paymentState.cardNumber}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.cardNumber}
+                  errorMessage={formik.errors.cardNumber}
+                  hasErrorMessage={formik.touched.cardNumber}
                 />
               </div>
 
@@ -107,8 +103,11 @@ function Payment() {
                   label="MM"
                   placeholder="MM"
                   maxLength={2}
-                  onChange={handleChange}
-                  value={paymentState.validMonth}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.validMonth}
+                  errorMessage={formik.errors.validMonth}
+                  hasErrorMessage={formik.touched.validMonth}
                 />
               </div>
               <div className="col col-3">
@@ -117,8 +116,11 @@ function Payment() {
                   type="text"
                   label="YY"
                   placeholder="YY"
-                  onChange={handleChange}
-                  value={paymentState.validYear}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.validYear}
+                  errorMessage={formik.errors.validYear}
+                  hasErrorMessage={formik.touched.validYear}
                 />
               </div>
               <div className="col col-6">
@@ -127,8 +129,11 @@ function Payment() {
                   type="text"
                   label="CVC"
                   placeholder="CVC"
-                  onChange={handleChange}
-                  value={paymentState.cvc}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.cvc}
+                  errorMessage={formik.errors.cvc}
+                  hasErrorMessage={formik.touched.cvc}
                 />
               </div>
             </div>
@@ -141,7 +146,7 @@ function Payment() {
               </Link>
             </div>
             <div className="ms-auto col-2 mt-5 big-mt">
-              <Button black onClick={handleSubmit}>
+              <Button black submitButton>
                 Summary
               </Button>
             </div>

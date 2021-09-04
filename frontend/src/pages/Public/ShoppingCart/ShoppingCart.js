@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { PUBLIC } from "../../../constants/routes";
 
@@ -14,6 +14,12 @@ import withLayout from "../../../hoc/withLayout";
 function ShoppingCart() {
   const { cartItems } = useContext(CartContext);
 
+  const history = useHistory();
+
+  const handlePreviousPage = () => {
+    history.goBack();
+  };
+
   return (
     <div className="row page-div">
       <div className="col col-8 page-left">
@@ -21,7 +27,10 @@ function ShoppingCart() {
       </div>
       <div className="col-4">
         <CheckoutProductsList />
-        <div className="col-12 mt-4 text-end">
+        <div className="col-12 px-2 mt-4 d-flex justify-content-between">
+          <Button handleClick={handlePreviousPage} black>
+            Back
+          </Button>
           <Link to={PUBLIC.SHIPPING}>
             <Button black>Checkout</Button>
           </Link>
