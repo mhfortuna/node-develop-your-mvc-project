@@ -49,9 +49,13 @@ export default function SignUp() {
           signUpState.email,
           signUpState.password,
         );
-        await sendUserData(signUpState.firstName);
+        const data = await sendUserData(signUpState.firstName);
         const token = await getCurrentUserToken();
-        login({ email: signUpState.email, token: token });
+        login({
+          email: signUpState.email,
+          token: token,
+          userId: data.data.userId._id,
+        });
         history.push(PUBLIC.HOME);
 
         setLoggedIn(true);

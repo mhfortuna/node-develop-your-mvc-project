@@ -2,16 +2,23 @@ const db = require("../models");
 // const { encryptPassword, comparePassword } = require("../utils/password-hash");
 
 // Sign in
-async function signIn(req, res, next) {
+async function signIn(req, res) {
   try {
-    const { email, uid } = req.body;
-    console.log(email, uid);
+    const { email } = req.client;
+    // console.log(email, uid);
+
+    const data = await db.Client.findOne(
+      {
+        email: email,
+      },
+      { _id: 1 },
+    );
     // const hashedPassword = await db.Client.findOne(
     //   { email: email },
     //   { password: 1, _id: 0 },
     // );
 
-    res.status(200).send({ message: "Successfully signed in" });
+    res.status(200).send({ message: "Successfully signed in", userId: data });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -23,12 +30,14 @@ async function signUp(req, res) {
     const { firstName } = req.body;
     const { email, uid } = req.client;
 
-    await db.Client.create({
+    const data = await db.Client.create({
       firstName: firstName,
       email: email,
       firebase_id: uid,
     });
-    res.status(200).send({ message: "Successfully signed up" });
+    res
+      .status(200)
+      .send({ message: "Successfully signed up", userId: data._id });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -38,8 +47,8 @@ async function signUp(req, res) {
 async function getById(req, res) {
   try {
     const { id } = req.params;
-    console.log(arguments.callee.toString());
-    res.status(200).send({ id: id });
+    const data = await db.Client.findOne({ _id: id });
+    res.status(200).send({ data });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

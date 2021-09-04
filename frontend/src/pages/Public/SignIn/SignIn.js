@@ -7,6 +7,9 @@ import signInSchema from "./sign-in-schema";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import AuthContext from "../../../context/auth-context";
+
+import { syncUserData } from "../../../utils/auth-request";
+
 import {
   signInWithEmailAndPassword,
   getCurrentUserToken,
@@ -37,9 +40,14 @@ export default function SignUp() {
           signInState.email,
           signInState.password,
         );
-        // await sendUserData(signUpState.firstName);
+        const data = await syncUserData();
+        console.log(data);
         const token = await getCurrentUserToken();
-        login({ email: signInState.email, token: token });
+        login({
+          email: signInState.email,
+          token: token,
+          userId: data.data.userId._id,
+        });
         history.push(PUBLIC.HOME);
 
         // setLoggedIn(true);

@@ -38,7 +38,11 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
       {isLogged ? (
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
           <div className="user-name font-bold medium-text">
-            {user && user.email}
+            {user && (
+              <Link to={`${PUBLIC.USER_INFO}/${user.userId}`}>
+                {user.email}
+              </Link>
+            )}
           </div>
           {IsCartItems ? (
             <Link to={PUBLIC.SHOPPING_CART}>
