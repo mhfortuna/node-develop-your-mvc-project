@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postProduct } from "../../../api";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
@@ -10,7 +10,7 @@ import withLayout from "../../../hoc/withLayout";
 import addProductSchema from "./addProduct-schema";
 
 function AddProduct({ type = "Create New Product" }) {
-  // TODO make a function to push the strings for lens and others images into a single array with differents values
+  const history = useHistory();
 
   async function addProduct(data) {
     try {
@@ -20,26 +20,47 @@ function AddProduct({ type = "Create New Product" }) {
     }
   }
 
-  // const makeStringIntoArray = (value, string) => {
-  // }
+  const makeStringIntoArray = (originalString) => {
+    if (originalString.includes(",")) {
+      return originalString.split(",");
+    }
+    return originalString;
+  };
 
   const formik = useFormik({
     initialValues: {
       title: "",
-      images: {
-        main: "",
-        others: [],
-      },
+      mainImage: "",
+      otherImages: "",
       price: "",
       unitsInStock: "",
-      lens: [],
+      lens: "",
       description: "",
     },
-    // TODO Edit the Schema for the product
     validationSchema: addProductSchema,
     onSubmit: (addProductState) => {
-      const newEmployee = { ...addProductState };
-      addProduct(newEmployee);
+      // Building images object
+      const imagesObject = {};
+      imagesObject.main = addProductState.mainImage;
+      imagesObject.others = makeStringIntoArray(addProductState.otherImages);
+
+      // Building lens array
+      const lensArray = makeStringIntoArray(addProductState.lens);
+
+      const newProduct = {
+        title: addProductState.title,
+        price: addProductState.price,
+        description: addProductState.description,
+        images: imagesObject,
+        lens: lensArray,
+        unitsInStock: addProductState.unitsInStock,
+      };
+
+      // console.log("New product --> ", newProduct);
+
+      addProduct(newProduct).then(() => {
+        history.push(`${PRIVATE.DASHBOARD_PRODUCTS}`);
+      });
     },
   });
 
@@ -90,9 +111,7 @@ function AddProduct({ type = "Create New Product" }) {
                     hasErrorMessage={formik.touched.description}
                   />
                 </div>
-                {
-                  // ! Figure out how to manage image.main and others with formik
-                }
+
                 <div className="col col-12">
                   <FloatInput
                     id="mainImage"
@@ -101,27 +120,26 @@ function AddProduct({ type = "Create New Product" }) {
                     placeholder="Product Main Image"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.images.main}
-                    errorMessage={formik.errors.profileImage}
-                    hasErrorMessage={formik.touched.profileImage}
+                    value={formik.values.mainImage}
+                    errorMessage={formik.errors.mainImage}
+                    hasErrorMessage={formik.touched.mainImage}
                   />
                 </div>
-                {
-                  // ! Figure out how to manage image.main and others with formik
-                }
+
                 <div className="col col-12">
                   <FloatInput
-                    id="othersImages"
+                    id="otherImages"
                     type="text"
-                    label="Others Images URL"
-                    placeholder="Others Images"
+                    label="Other Images URL"
+                    placeholder="Other Images"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.images.others}
-                    errorMessage={formik.errors.profileImage}
-                    hasErrorMessage={formik.touched.profileImage}
+                    value={formik.values.otherImages}
+                    errorMessage={formik.errors.otherImages}
+                    hasErrorMessage={formik.touched.otherImages}
                   />
                 </div>
+
                 <div className="col col-6">
                   <FloatInput
                     id="lens"
@@ -137,7 +155,7 @@ function AddProduct({ type = "Create New Product" }) {
                 </div>
                 <div className="col col-6">
                   <FloatInput
-                    id="stock"
+                    id="unitsInStock"
                     type="number"
                     label="Units in Stock"
                     placeholder="Units in Stock"
