@@ -1,11 +1,9 @@
 const db = require("../models");
-// const { encryptPassword, comparePassword } = require("../utils/password-hash");
 
 // Sign in
 async function signIn(req, res) {
   try {
     const { email } = req.client;
-    // console.log(email, uid);
 
     const data = await db.Client.findOne(
       {
@@ -13,10 +11,7 @@ async function signIn(req, res) {
       },
       { _id: 1 },
     );
-    // const hashedPassword = await db.Client.findOne(
-    //   { email: email },
-    //   { password: 1, _id: 0 },
-    // );
+
     res.status(200).send({ message: "Successfully signed in", userId: data });
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -45,8 +40,11 @@ async function signUp(req, res) {
 // GET client
 async function getById(req, res) {
   try {
-    const { id } = req.params;
-    const data = await db.Client.findOne({ _id: id });
+    // const { id } = req.params;
+    const { email } = req.client;
+
+    // const data = await db.Client.findOne({ _id: id });
+    const data = await db.Client.findOne({ email });
     res.status(200).send({ data });
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -56,7 +54,8 @@ async function getById(req, res) {
 // PATCH client
 async function updateById(req, res) {
   try {
-    const { id } = req.params;
+    // const { id } = req.params;
+    const { authEmail } = req.client;
     const {
       address,
       city,
@@ -67,8 +66,22 @@ async function updateById(req, res) {
       zipCode,
       phoneNumber,
     } = req.body.client;
-    const data = await db.Client.findByIdAndUpdate(
-      id,
+    // const data = await db.Client.findByIdAndUpdate(
+    //   id,
+    //   {
+    //     address: address,
+    //     city: city,
+    //     country: country,
+    //     email: email,
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     zipCode: zipCode,
+    //     phoneNumber: phoneNumber,
+    //   },
+    //   { new: true },
+    // );
+    const { _id } = await db.Client.findOneAndUpdate(
+      { authEmail },
       {
         address: address,
         city: city,
@@ -81,8 +94,7 @@ async function updateById(req, res) {
       },
       { new: true },
     );
-    console.log(data);
-    res.status(200).send({ id: id, message: "Success" });
+    res.status(200).send({ id: _id, message: "Success" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
