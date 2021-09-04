@@ -9,6 +9,7 @@ export const PUBLIC = {
   SUMMARY: "/checkout/summary",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
+  SIGNOUT: "/signout",
   USER_INFO: "/user",
   USER_EDIT: "/user/edit",
 };
@@ -33,5 +34,6 @@ export const API = {
   EMPLOYEES_SIGN_IN: "/employees/signin",
   CLIENTS: "/clients",
   CLIENTS_SIGN_IN: "/clients/signin",
+  CLIENTS_SIGN_UP: "/clients/signup",
   ORDERS: "/orders",
 };

@@ -4,7 +4,11 @@ const validator = require("validator");
 
 const clientSchema = new Schema(
   {
-    fullName: {
+    firstName: {
+      type: String,
+      trim: true,
+    },
+    firebase_id: {
       type: String,
       trim: true,
     },
@@ -21,6 +25,7 @@ const clientSchema = new Schema(
   },
 
   {
+    strict: false,
     timestamps: true,
   },
 );
