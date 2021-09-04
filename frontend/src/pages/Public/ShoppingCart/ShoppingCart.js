@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import { PUBLIC } from "../../../constants/routes";
@@ -19,6 +19,13 @@ function ShoppingCart() {
   const handlePreviousPage = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    console.log("Cart items length --> ", cartItems.length);
+    if (cartItems.length === 0) {
+      history.push(PUBLIC.HOME);
+    }
+  }, [cartItems]);
 
   return (
     <div className="row page-div">

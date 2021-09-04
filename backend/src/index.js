@@ -1,7 +1,7 @@
 const app = require("./server");
 const { config } = require("./config/config");
 const connect = require("./db/connect");
-// const { /* seedProducts, */ seedEmployees } = require("./db/seed");
+// const { seedProducts, seedEmployees } = require("./db/seed");
 
 connect()
   .then(async () => {

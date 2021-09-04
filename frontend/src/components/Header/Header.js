@@ -46,7 +46,7 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
           </div>
           {IsCartItems ? (
             <Link to={PUBLIC.SHOPPING_CART}>
-              <div className="ms-3">
+              <div className="mx-3">
                 <Button transparent>
                   <CartIcon />
                 </Button>
@@ -62,17 +62,12 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
               </div>
             </Link>
           ) : (
-            <div className="ms-3">
+            <div className="mx-3">
               <Button transparent disabled>
                 <CartIcon />
               </Button>
             </div>
           )}
-          {/* <Link to={user ? PUBLIC.SIGNOUT : PUBLIC.SIGNIN}>
-            <div className="ms-3 btn btn-outline-dark medium-text">
-              {user ? "Logout" : "Login"}
-            </div>
-          </Link> */}
           <Button transparent onClick={handleClick}>
             {user ? "Logout" : "Login"}
           </Button>
