@@ -1,17 +1,32 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Button from "../Button/Button";
 import CartIcon from "../SVGIcons/CartIcon";
 
 import CartContext from "../../context/cart-context";
+import AuthContext from "../../context/auth-context";
 
 import { PUBLIC } from "../../constants/routes";
+import { signOut } from "../../services/auth";
 
 import "./Header.scss";
 
 export default function Header({ pageTitle, isLogged, IsCartItems }) {
   const { cartItems } = useContext(CartContext);
+  const { user, logout } = useContext(AuthContext);
+  const history = useHistory();
+
+  const handleClick = async () => {
+    if (!user) {
+      history.push(PUBLIC.SIGNIN);
+      return;
+    }
+
+    await signOut();
+    logout();
+    history.push(PUBLIC.HOME);
+  };
 
   let totalCartItems = 0;
 
@@ -22,7 +37,13 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
       </Link>
       {isLogged ? (
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
-          <div className="user-name font-bold medium-text">Username</div>
+          <div className="user-name font-bold medium-text">
+            {user && (
+              <Link to={`${PUBLIC.USER_INFO}/${user.userId}`}>
+                {user.email}
+              </Link>
+            )}
+          </div>
           {IsCartItems ? (
             <Link to={PUBLIC.SHOPPING_CART}>
               <div className="ms-3">
@@ -47,8 +68,14 @@ export default function Header({ pageTitle, isLogged, IsCartItems }) {
               </Button>
             </div>
           )}
-
-          <div className="ms-3 btn btn-outline-dark medium-text">Log out</div>
+          {/* <Link to={user ? PUBLIC.SIGNOUT : PUBLIC.SIGNIN}>
+            <div className="ms-3 btn btn-outline-dark medium-text">
+              {user ? "Logout" : "Login"}
+            </div>
+          </Link> */}
+          <Button transparent onClick={handleClick}>
+            {user ? "Logout" : "Login"}
+          </Button>
         </div>
       ) : (
         <div className="col col-4 d-flex p-0 user-wrapper justify-content-end align-items-start">
