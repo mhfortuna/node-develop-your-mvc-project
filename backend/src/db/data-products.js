@@ -115,8 +115,8 @@ function getSeedProducts() {
         main: "https://m.media-amazon.com/images/I/813nhrot8BL._AC_SL1500_.jpg",
         others: [
           "https://m.media-amazon.com/images/I/71QJHdNScKL._AC_SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/71slz27QZpL._AC_SL1500_.jpg",
           "https://m.media-amazon.com/images/I/81YGlVg77PL._AC_SL1500_.jpg",
-          "https://m.media-amazon.com/images/I/71QJHdNScKL._AC_SL1500_.jpg",
         ],
       },
       title: "Nikon D750",
