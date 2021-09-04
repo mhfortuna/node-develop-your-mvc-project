@@ -24,6 +24,6 @@ export function removeEmployeeById(employeeId, api = makeEmployeesApi()) {
   return api.delete(`/${employeeId}`);
 }
 
-export function editEmployeeById(employeeId, api = makeEmployeesApi()) {
-  return api.post(`/${employeeId}`);
+export function editEmployee(employee, api = makeEmployeesApi()) {
+  return api.post(`/${employee.id}`, { employee: employee });
 }

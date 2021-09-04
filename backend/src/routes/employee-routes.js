@@ -12,14 +12,7 @@ employeeRouter.post("/signin/", employeeController.signIn);
 employeeRouter.get("/:id", employeeController.getById);
 
 // PATCH employee
-// employeeRouter.patch("/:id", employeeController.updateById);
-
-// PATCH employee
 employeeRouter.post("/:id", employeeController.updateById);
-// JWT
-
-// PATCH employee
-employeeRouter.patch("/:id", employeeController.updateById);
 // JWT
 
 // DELETE employee

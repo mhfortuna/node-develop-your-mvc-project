@@ -1,13 +1,13 @@
 import { useFormik } from "formik";
 import React, { useState, useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
-// import { postEmployee } from "../../../api/employeesApi";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { editEmployee } from "../../../api/employeesApi";
 import Button from "../../../components/Button";
 import FloatInput from "../../../components/FloatInput";
 import { PRIVATE } from "../../../constants/routes";
 import withLayout from "../../../hoc/withLayout";
 
-import addEmployeeSchema from "../AddEmployee/addEmployee-schema";
+import editEmployeeSchema from "./editEmployee-schema";
 
 import { getEmployeeById } from "../../../api";
 
@@ -15,13 +15,14 @@ function EditEmployee({ type = "Edit Employee" }) {
   const { employeeId } = useRouteMatch(
     `${PRIVATE.EDIT_EMPLOYEE}/:employeeId`,
   ).params;
+
   const [isAdmin, setIsAdmin] = useState(false);
-  // const [employee, setEmployee] = useState({});
   const [loadStatus, setLoadStatus] = useState({
     isError: false,
     isLoading: true,
   });
-  // const
+
+  const history = useHistory();
 
   const handleSetRole = (event) => {
     if (event.target.innerHTML === "Employee") {
@@ -35,15 +36,18 @@ function EditEmployee({ type = "Edit Employee" }) {
     initialValues: {
       fullName: "",
       email: "",
-      password: "",
       isAdmin: "",
       profileImage: "",
     },
-    validationSchema: addEmployeeSchema,
-    onSubmit: (addEmployeeState) => {
-      const newEmployee = { ...addEmployeeState, isAdmin: isAdmin };
-      console.log(newEmployee);
-      // addEmployee(newEmployee);
+    validationSchema: editEmployeeSchema,
+    onSubmit: (editEmployeeState) => {
+      editEmployee({
+        ...editEmployeeState,
+        isAdmin: isAdmin,
+        id: employeeId,
+      }).then(() => {
+        history.push(`${PRIVATE.DASHBOARD_USERS}`);
+      });
     },
   });
 
@@ -53,8 +57,8 @@ function EditEmployee({ type = "Edit Employee" }) {
       formik.setValues({
         fullName: data.foundEmployee.fullName,
         email: data.foundEmployee.email,
-        password: data.foundEmployee.password,
-        isAdmin: data.foundEmployee.isAdmin,
+        // password: "",
+        // isAdmin: data.foundEmployee.isAdmin,
         profileImage: data.foundEmployee.profileImage,
       });
       setIsAdmin(data.foundEmployee.isAdmin);
@@ -105,19 +109,7 @@ function EditEmployee({ type = "Edit Employee" }) {
                       hasErrorMessage={formik.touched.email}
                     />
                   </div>
-                  <div className="col col-12">
-                    <FloatInput
-                      id="password"
-                      type="password"
-                      label="Password"
-                      placeholder="Password"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.password}
-                      errorMessage={formik.errors.password}
-                      hasErrorMessage={formik.touched.password}
-                    />
-                  </div>
+
                   <div className="col col-12">
                     <FloatInput
                       id="profileImage"
