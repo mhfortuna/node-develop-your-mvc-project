@@ -9,8 +9,7 @@ productRouter.get("/:id", productController.getById);
 // public
 
 // PATCH product
-productRouter.patch("/:id", productController.updateById);
-// JWT
+productRouter.post("/:id", productController.updateById);
 
 // DELETE product
 productRouter.delete("/:id", productController.deleteById);
