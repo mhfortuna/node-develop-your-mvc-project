@@ -20,12 +20,16 @@ import "./sass/main.scss";
 import Summary from "./pages/Public/Summary/Summary";
 import AddEmployee from "./pages/Private/AddEmployee";
 import AddProduct from "./pages/Private/AddProduct/AddProduct";
+import EditEmployee from "./pages/Private/EdtiEmployee/EditEmployee";
 
 function App() {
   return (
     <CartContextProvider>
       <BrowserRouter>
         <Switch>
+          <Route path={PRIVATE.EDIT_EMPLOYEE}>
+            <EditEmployee />
+          </Route>
           <Route path={PRIVATE.NEW_EMPLOYEE}>
             <AddEmployee />
           </Route>
