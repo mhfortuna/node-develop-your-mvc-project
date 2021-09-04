@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import FloatInput from "../../../components/FloatInput";
 import Button from "../../../components/Button";
 import signInSchema from "./sign-in-schema";
@@ -30,11 +30,6 @@ export default function SignUp() {
     },
     validationSchema: signInSchema,
     onSubmit: async (signInState) => {
-      // updateCheckoutContext(shippingState);
-
-      // setLoading(true);
-      // setLoggedIn(false);
-
       try {
         await signInWithEmailAndPassword(
           signInState.email,
@@ -47,13 +42,10 @@ export default function SignUp() {
           token: token,
           userId: data.data.userId._id,
         });
-        history.push(PUBLIC.HOME);
 
-        // setLoggedIn(true);
+        history.push(PUBLIC.HOME);
       } catch (error) {
         setLoginError(error.message);
-      } finally {
-        // setLoading(false);
       }
     },
   });
@@ -93,14 +85,19 @@ export default function SignUp() {
                   hasErrorMessage={formik.touched.password}
                 />
               </div>
-              <div className="row m-3">
-                <div className="col-3">
+              <div className="d-flex m-4">
+                <div className="col-6">
                   <Button submitButton black>
                     Sign in
                   </Button>
                 </div>
-                <div className="col-9" />
+                <div className="col-2 ms-auto">
+                  <Link to={PUBLIC.SIGNUP}>
+                    <Button black>Sign up</Button>
+                  </Link>
+                </div>
               </div>
+
               <div className="row m-3 pt-3 me-4 ms-4 ext-sign">
                 <div className="col-6 ps-0">
                   <Button submitButton light fullWidth>
