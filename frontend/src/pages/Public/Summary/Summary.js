@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Button from "../../../components/Button";
@@ -25,7 +25,10 @@ function Summary() {
   } = useContext(CheckoutContext);
 
   const { cartItems, clearCartContext } = useContext(CartContext);
+  const [status, setStatus] = useState({ error: false, message: "" });
+
   const history = useHistory();
+
   const order = {
     firstName,
     lastName,
@@ -37,24 +40,28 @@ function Summary() {
     country,
     products: cartItems,
   };
-  async function addOrder(_order) {
+
+  async function addOrder() {
     try {
-      const { id } = await postOrder(_order);
-      console.log(id);
+      await postOrder(order);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // TODO: send order to backend
-    addOrder(order);
+    try {
+      addOrder();
 
-    clearCheckoutContext();
-    clearCartContext();
-    history.push(PUBLIC.HOME);
+      clearCheckoutContext();
+      clearCartContext();
+
+      history.push(PUBLIC.HOME);
+    } catch (error) {
+      setStatus({ ...status, error: true, message: error.message });
+    }
   };
 
   return (
@@ -62,6 +69,8 @@ function Summary() {
       <div className="row col-10">
         <section className="col-6">
           <h2 className="big-text mb-3">Summary</h2>
+
+          {status.error && <h3>ERROR: {status.message} </h3>}
 
           <h3 className="font-bold medium-big-text mb-3">
             Customer information
